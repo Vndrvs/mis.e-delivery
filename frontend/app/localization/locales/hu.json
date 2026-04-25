@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "home": "Kezdőlap",
+    "menu": "Étlap",
+    "cart": "Kosár",
+    "orders": "Rendeléseim",
+    "profile": "Profil",
+    "admin-products": "Termékek",
+    "admin-orders": "Rendeléskezelés",
+    "admin-analytics": "Statisztikák"
+  }
+}
