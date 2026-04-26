@@ -4,8 +4,8 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-  <nav class="navigation">
-    <ul class="navigation__list">
+  <nav class="navigation w-full">
+    <ul class="navigation__list flex md:justify-start md:gap-8 list-none p-0 m-0">
       <li 
         v-for="item in navItems" 
         :key="item.to" 
@@ -24,13 +24,6 @@ const localePath = useLocalePath();
 </template>
 
 <style scoped lang="postcss">
-.navigation {
-  @apply w-full;
-}
-
-.navigation__list {
-  @apply flex items-center justify-around md:justify-center md:gap-8 list-none p-0 m-0;
-}
 
 .navigation__item {
   @apply flex-1 md:flex-none;

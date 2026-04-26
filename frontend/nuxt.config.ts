@@ -1,7 +1,8 @@
-import { resolve } from 'path'
-
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
+  future: {
+    compatibilityVersion: 4,
+  },
   devtools: { 
     enabled: true 
   },
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
       }
     ],
 
-    langDir: resolve(__dirname, './app/localization/locales'),
+    langDir: '../app/localization/locales',
 
     pages: {
       'index': {
@@ -63,5 +64,6 @@ export default defineNuxtConfig({
     public: {
       strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337'
     }
-  }
+  },
+  ssr: false
 })

@@ -1,23 +1,23 @@
-import { computed } from "vue";
-import { getNavigation } from "~/utils/useNavigation";
-
 export const useNavMenu = () => {
+	
 	const route = useRoute();
-
+	const { t } = useI18n();
+	
 	const where = computed<"home" | "admin">(() => {
-		return route.path.startsWith("/admin")
-			? "admin"
-			: "home";
+		const path = route?.path || '';
+		return path.startsWith("/admin") ? "admin" : "home";
 	});
-
+	
 	const navItems = computed(() => {
-		return getNavigation(where.value);
+		return getNavigation(where.value, t);
 	});
-
-	const currentPath = computed(() => route.path);
-
+	
+	const currentPath = computed(() => route?.path || '/');
+	
 	return {
 		navItems,
 		currentPath,
+		
 	};
+	
 };
