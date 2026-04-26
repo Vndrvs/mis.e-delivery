@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-// Import your new component
-
 const { navItems, currentPath } = useNavMenu();
 const lastScrollY = ref(0);
 const isVisible = ref(true);
@@ -19,7 +17,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 <template>
     <div>
         <header
-            class="header hidden md:block fixed top-0 w-full z-40 transition-transform duration-300"
+            class="header hidden lg:block fixed top-0 w-full z-40 transition-transform duration-300"
             :class="{ '-translate-y-full': !isVisible }"
         >
             <div class="header__container flex justify-between items-center bg-page px-6 py-4">
@@ -33,6 +31,6 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
             </div>
         </header>
 
-        <MobileBottomNav />
+        <NavMobileBottomNav />
     </div>
 </template>

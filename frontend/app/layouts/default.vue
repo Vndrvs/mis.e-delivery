@@ -13,6 +13,6 @@
 <style lang="postcss" scoped>
 
 .layout-default__main {
-  @apply pb-24 md:pb-0 md:pt-24 min-h-screen;
+  @apply pb-24 lg:pt-24 min-h-screen;
 }
 </style>
