@@ -6,10 +6,9 @@
     @click="$emit('update:makiOnly', !makiOnly)"
     class="menu-controls__type-btn flex justify-center gap-3 px-5 py-3 rounded-full border shadow-sm transition-all duration-200"
     :class="[
-      makiOnly
-        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold'
-        : 'bg-pill border-str-light',
-      isInactive('maki') 
+      (!anyTypeActive || makiOnly)
+        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold text-white'
+        : 'bg-pill border-str-light text-txt-sec', isInactive('maki') 
         ? 'opacity-50 scale-95' 
         : 'opacity-100 scale-100'
     ]"
@@ -29,10 +28,9 @@
     @click="$emit('update:bowlOnly', !bowlOnly)"
     class="menu-controls__type-btn flex justify-center gap-3 px-5 py-3 rounded-full border shadow-sm transition-all duration-200"
     :class="[
-      bowlOnly
-        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold'
-        : 'bg-pill border-str-light',
-      isInactive('bowl')
+      (!anyTypeActive || bowlOnly)
+        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold text-white'
+        : 'bg-pill border-str-light text-txt-sec', isInactive('bowl') 
         ? 'opacity-50 scale-95' 
         : 'opacity-100 scale-100'
     ]"
@@ -52,10 +50,9 @@
     @click="$emit('update:veganOnly', !veganOnly)"
     class="menu-controls__type-btn flex justify-center gap-3 px-5 py-3 rounded-full border shadow-sm transition-all duration-200"
     :class="[
-      veganOnly
-        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold'
-        : 'bg-pill border-str-light',
-      isInactive('vegan') 
+      (!anyTypeActive || veganOnly)
+        ? 'menu-controls__type-btn--active bg-primary border-primary font-bold text-white'
+        : 'bg-pill border-str-light text-txt-sec', isInactive('vegan') 
         ? 'opacity-50 scale-95' 
         : 'opacity-100 scale-100'
     ]"
@@ -69,7 +66,6 @@
       {{ t('products.vegan') }}
     </span>
   </button>
-
 </div>
 
     <div class="menu-controls__actions flex items-center justify-between pt-0 pb-3 px-4 md:px-0 relative z-50 font-sans">

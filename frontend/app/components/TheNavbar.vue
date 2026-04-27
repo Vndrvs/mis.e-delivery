@@ -18,6 +18,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
 <template>
     <div>
+        <NavMobileHeader class="header lg:hidden fixed top-0 w-full transition-transform duration-300" />
         <header
             class="header hidden lg:block fixed top-0 w-full z-40 transition-transform duration-300"
             :class="{ 

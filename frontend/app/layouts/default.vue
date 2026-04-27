@@ -12,6 +12,6 @@
 
 <style lang="postcss" scoped>
 .layout-default__main {
-  @apply mb-24 lg:mt-24 min-h-screen; 
+  @apply mb-24 mt-24 min-h-screen; 
 }
 </style>
