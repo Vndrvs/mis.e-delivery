@@ -33,7 +33,7 @@ const footerColumns = [
 </script>
 
 <template>
-	<footer class="site-footer">
+	<footer class="site-footer bg-page">
 		<div class="site-footer__columns">
 			<div
 				v-for="(col, index) in footerColumns"

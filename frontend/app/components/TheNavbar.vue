@@ -18,7 +18,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
 <template>
     <div>
-        <NavMobileHeader class="header lg:hidden fixed top-0 w-full transition-transform duration-300" />
+        <NavMobileHeader class="header lg:hidden sticky w-full z-50 transition-transform duration-300" />
         <header
             class="header hidden lg:block fixed top-0 w-full z-40 transition-transform duration-300"
             :class="{ 
@@ -29,11 +29,10 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
             <div class="header__container mx-auto flex items-center px-6 py-3">
                 
                 <NuxtLink to="/" class="flex-shrink-0">
-
   					<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
 						<img :src="brandLogo"
 							alt="Brand Logo" 
-							class="h-10 w-auto icon-black header__brand"  />
+							class="header__brand h-10 w-auto icon-black"  />
 					</div>
                 </NuxtLink>
 

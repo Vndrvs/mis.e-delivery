@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: 'hu',
     strategy: 'prefix_except_default',
+    detectBrowserLanguage: false,
     
     locales: [
       { 

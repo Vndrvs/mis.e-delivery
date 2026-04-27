@@ -9,6 +9,7 @@
         :maki-only="makiOnly"
         :bowl-only="bowlOnly"
         :vegan-only="veganOnly"
+        :sort-type="sortType"
         @update:category="handleCategoryChange"
         @update:sort="handleSort"
 		    @update:saleOnly="saleOnly = $event"
@@ -24,8 +25,8 @@
           :title="product.name"
           :category="product.product_type"
           :piece-count="product.piece_count"
-		  :on-sale="product.on_sale"
-		  :sale-price="product.sale_price"
+          :on-sale="product.on_sale"
+          :sale-price="product.sale_price"
           :price="product.price"
           :image="product.images?.[0]?.url"
         />

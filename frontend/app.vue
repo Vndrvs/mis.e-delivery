@@ -5,11 +5,3 @@
     </NuxtLayout>
   </div>
 </template>
-
-<script setup lang="ts">
-useHead({
-  htmlAttrs: {
-    lang: 'hu'
-  }
-})
-</script>

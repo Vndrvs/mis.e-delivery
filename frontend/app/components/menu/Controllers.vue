@@ -73,8 +73,13 @@
       <div class="menu-controls__category relative">
         <button 
           @click="isCategoryOpen = !isCategoryOpen"
-          class="menu-controls__btn menu-controls__btn--category flex items-center gap-2 px-5 py-2.5 bg-pill border border-str-light rounded-full transition-all active:scale-95 shadow-sm"
-        >
+          :class="[
+            'menu-controls__btn menu-controls__btn--category flex items-center gap-2 px-5 py-2.5 border border-txt-muted rounded-full transition-all active:scale-95 shadow-sm',
+          activeCategory !== 'all'
+            ? 'bg-pill border-txt-muted'
+            : 'bg-page border-txt-muted'
+      ]"
+          >
           <span class="menu-controls__label text-txt-sec font-medium capitalize"> {{ getCategoryLabel(activeCategory) }} </span>
           <img 
             src="~/assets/img/caret-down.svg" class="menu-controls__icon menu-controls__icon--caret w-4 h-4 opacity-60" 
@@ -97,8 +102,8 @@
       <!-- sale btn -->
       <button 
         @click="$emit('update:saleOnly', !saleOnly)"
-        class="menu-controls__btn menu-controls__btn--sale flex items-center gap-2 px-5 py-3 rounded-full border transition-all active:scale-95 shadow-sm"
-        :class="saleOnly ? 'menu-controls__btn--active bg-primary border-primary text-white' : 'bg-pill border-str-light text-txt-sec'"
+        class="menu-controls__btn menu-controls__btn--sale flex items-center gap-2 px-5 py-3 rounded-full border border-txt-muted transition-all active:scale-95 shadow-sm"
+        :class="saleOnly ? 'menu-controls__btn--active bg-pill' : 'text-txt-sec bg-page'"
       >
         <span class="menu-controls__label font-medium">{{ t('products.sale') }}</span>
       </button>
@@ -107,10 +112,20 @@
       <div class="menu-controls__sort relative">
         <button 
           @click="isSortOpen = !isSortOpen"
-          class="menu-controls__btn menu-controls__btn--sort flex items-center gap-2 px-5 py-2.5 bg-pill border border-str-light rounded-full transition-all active:scale-95 shadow-sm"
+          :class="[
+            'menu-controls__btn menu-controls__btn--sort flex items-center gap-2 px-5 py-2.5 border border-txt-muted rounded-full transition-all active:scale-95 shadow-sm',
+            sortType ? 'bg-pill' : 'bg-page'
+          ]"
         >
-          <span class="menu-controls__label text-txt-sec font-medium">{{ t('products.sort') }}</span>
-          <img src="~/assets/img/arrows-vertical.svg" class="menu-controls__icon menu-controls__icon--sort w-3 h-3 opacity-60" alt="" />
+          <span class="menu-controls__label text-txt-sec font-medium">
+            {{ sortType ? t(`products.sort_options.${sortType}`) : t('products.sort') }}
+          </span>
+
+          <img 
+            src="~/assets/img/arrows-vertical.svg"
+            class="menu-controls__icon menu-controls__icon--sort w-3 h-3 opacity-60"
+            alt=""
+          />
         </button>
 
         <div 
@@ -139,6 +154,7 @@ const props = defineProps<{
   makiOnly: boolean;
   bowlOnly: boolean;
   veganOnly: boolean;
+  sortType: string;
 }>();
 
 const emit = defineEmits([
@@ -189,7 +205,8 @@ const selectCategory = (cat: string) => {
 };
 
 const selectSort = (type: string) => {
-  emit('update:sort', type);
+  const next = props.sortType === type ? null : type;
+  emit('update:sort', next);
   isSortOpen.value = false;
 };
 
