@@ -50,18 +50,18 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
 
 <style scoped lang="postcss">
 .nav-item {
-  @apply flex flex-col items-center justify-center w-[60px] text-txt-main opacity-80 transition-all;
+	@apply flex flex-col items-center justify-center w-[60px] text-txt-main opacity-80 transition-all;
 }
 
 .nav-item--active {
-  @apply opacity-100 font-bold;
+	@apply opacity-100 font-bold;
 }
 
 .icon-white {
-  filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
 }
 
 .icon-brand-pink {
-  filter: invert(53%) sepia(88%) saturate(3054%) hue-rotate(301deg) brightness(101%) contrast(97%);
+	filter: brightness(0) saturate(100%) invert(41%) sepia(92%) saturate(710%) hue-rotate(287deg) brightness(103%) contrast(97%);
 }
 </style>

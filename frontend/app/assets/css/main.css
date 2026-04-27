@@ -6,12 +6,12 @@
   :root {
 	/* background and brand */
     --bg-page: 0 0% 92%; /* light grey */
-	--bg-primary: 326 95% 66%; /* brilliant rose */
-	--bg-secondary: 159 43% 57%; /* silver tree */
-	--bg-pill: 0 0% 85%; /* 'mid' grey */
+    --bg-primary: 326 95% 66%; /* brilliant rose */
+    --bg-secondary: 159 43% 57%; /* silver tree */
+    --bg-pill: 0 0% 85%; /* 'mid' grey */
 
-	/* text */
-	--txt-main: 0 0% 100%;
+    /* text */
+    --txt-main: 0 0% 100%;
     --txt-sec: 0 0% 0%; 
     --txt-muted: 0 0% 44%;    /* #707070 */
     --str-light: 0 0% 93%;    /* #ECECEC */

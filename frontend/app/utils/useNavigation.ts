@@ -3,6 +3,7 @@ import menuIcon from '~/assets/img/menu-icon.svg';
 import cartIcon from '~/assets/img/cart-icon.svg';
 import boxIcon from '~/assets/img/box-icon.svg';
 import userIcon from '~/assets/img/user-icon.svg';
+import brandLogo from '~/assets/img/brand-logo.svg';
 
 type Where = "home" | "admin";
 

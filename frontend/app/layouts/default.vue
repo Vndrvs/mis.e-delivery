@@ -11,8 +11,7 @@
 </template>
 
 <style lang="postcss" scoped>
-
 .layout-default__main {
-  @apply pb-24 lg:pt-24 min-h-screen;
+  @apply mb-24 lg:mt-24 min-h-screen; 
 }
 </style>

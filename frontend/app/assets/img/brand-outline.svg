@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 335 335" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="layer1" transform="matrix(2.834646,0,0,2.834646,-130.522652,-253.829718)">
+        <g id="g7" transform="matrix(1,0,0,1,-1.503517,28.008507)">
+            <g id="g6" transform="matrix(2.105518,0,0,2.105518,-20.008881,-45.492561)">
+                <path id="text4-3" d="M75.105,78.24L45.549,78.24L45.549,95.307L49.046,95.307L49.046,81.947L58.579,81.947L58.579,95.255L61.992,95.255L61.992,81.947L71.608,81.947L71.608,95.282L75.105,95.282L75.105,78.24Z" style="fill:white;fill-rule:nonzero;"/>
+                <g id="text4-3-4" transform="matrix(0,-1.106147,-0.904039,0,0,0)">
+                    <g transform="matrix(1,0,0,1,-85.401138,-50.383503)">
+                        <text x="0px" y="0px" style="font-family:'Geist-Regular', 'Geist';font-size:46.048px;fill:white;">E</text>
+                    </g>
+                </g>
+                <g id="path4" transform="matrix(-1,0,0,-1,0,0)">
+                    <path d="M-54.215,-65.307C-54.215,-68.992 -51.026,-72.023 -47.15,-72.023C-43.275,-72.023 -40.086,-68.992 -40.086,-65.307" style="fill:white;fill-rule:nonzero;"/>
+                </g>
+                <g id="path4-1" transform="matrix(-1,0,0,-1,0,0)">
+                    <path d="M-67.236,-65.31C-67.236,-68.994 -64.047,-72.026 -60.172,-72.026C-56.297,-72.026 -53.108,-68.994 -53.108,-65.31" style="fill:white;fill-rule:nonzero;"/>
+                </g>
+                <g id="path4-1-8" transform="matrix(-1,0,0,-1,0,0)">
+                    <path d="M-80.086,-65.31C-80.086,-68.994 -76.897,-72.026 -73.022,-72.026C-69.147,-72.026 -65.958,-68.994 -65.958,-65.31" style="fill:white;fill-rule:nonzero;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

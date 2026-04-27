@@ -34,7 +34,6 @@ const footerColumns = [
 
 <template>
 	<footer class="site-footer">
-		<SocialIconContainer class="site-footer__social-container" />
 		<div class="site-footer__columns">
 			<div
 				v-for="(col, index) in footerColumns"

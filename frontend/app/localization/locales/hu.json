@@ -8,5 +8,29 @@
     "admin-products": "Termékek",
     "admin-orders": "Rendeléskezelés",
     "admin-analytics": "Statisztikák"
+  }, 
+   "language_toggle": {
+    "english": "English",
+    "hungarian": "Hungarian",
+    "japanese": "日本語"
+  },
+  "categories": {
+    "bowl": "tál",
+    "sushi": "sushi",
+    "vegan": "vegán",
+    "all": "összes"
+  },
+  "products": {
+    "sale": "Akciók",
+    "sort": "Rendezés",
+    "maki": "Maki",
+    "bowl": "Tál",
+    "vegan": "Vegán",
+    "sort_options": {
+      "price_low": "Ár szerint (növekvő)",
+      "price_high": "Ár szerint (csökkenő)",
+      "newest": "Legújabb",
+      "category": "Kategória"
+    }
   }
 }

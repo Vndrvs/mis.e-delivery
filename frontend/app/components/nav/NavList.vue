@@ -16,7 +16,7 @@ const localePath = useLocalePath();
           class="navigation__link"
           active-class="navigation__link--active"
         >
-          <span class="navigation__text">{{ item.name }}</span>
+          <span class="navigation__text text-">{{ item.name }}</span>
         </NuxtLink>
       </li>
     </ul>
@@ -30,18 +30,15 @@ const localePath = useLocalePath();
 }
 
 .navigation__link {
-  @apply flex flex-col items-center justify-center py-3 md:py-2 px-4 
-         text-gray-600 no-underline transition-colors duration-200;
-  font-family: 'Sora', sans-serif;
-  letter-spacing: 0.05rem;
+  @apply text-white flex flex-col items-center justify-center py-3 md:py-2 px-4 no-underline transition-colors duration-200;
 }
 
 .navigation__link:hover {
-  @apply text-black;
+  @apply opacity-80;
 }
 
 .navigation__link--active {
-  @apply text-black font-bold;
+  @apply font-bold;
 }
 
 .navigation__text {

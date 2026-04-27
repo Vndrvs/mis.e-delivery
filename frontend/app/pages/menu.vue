@@ -1,3 +1,3 @@
 <template>
-
+	<MenuGrid />
 </template>

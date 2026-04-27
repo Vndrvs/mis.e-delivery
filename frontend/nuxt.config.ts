@@ -9,6 +9,11 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css'
   ],
+  runtimeConfig: {
+		public: {
+			strapiUrl: "",
+		},
+	},
   modules: [
     '@nuxtjs/tailwindcss', 
     '@pinia/nuxt', 
@@ -58,11 +63,6 @@ export default defineNuxtConfig({
         hu: '/admin/analitika',
         en: '/admin/analytics'
       }
-    }
-  },
-  runtimeConfig: {
-    public: {
-      strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337'
     }
   },
   ssr: false

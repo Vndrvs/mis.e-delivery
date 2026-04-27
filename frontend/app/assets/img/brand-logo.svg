@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="117.90902mm"
+   height="117.90902mm"
+   viewBox="0 0 117.90902 117.90902"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-46.045491,-89.545484)">
+    <g
+       id="g7"
+       transform="translate(-1.5035172,28.008507)">
+      <circle
+         style="fill:#000000;stroke-width:0.40953"
+         id="path6"
+         cx="106.50352"
+         cy="120.49149"
+         r="58.95451" />
+      <g
+         id="g6"
+         transform="matrix(2.1055181,0,0,2.1055181,-20.008881,-45.492561)">
+        <path
+           d="M 75.105226,78.240145 H 45.548675 v 17.067006 h 3.496833 V 81.946874 h 9.533028 v 13.308281 h 3.413573 V 81.946874 h 9.616285 v 13.335161 h 3.496832 z"
+           id="text4-3"
+           style="font-size:24.6944px;font-family:Geist;-inkscape-font-specification:Geist;fill:#ffffff;stroke-width:0.453845"
+           aria-label="E" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.0478px;font-family:Geist;-inkscape-font-specification:Geist;fill:#ffffff;stroke-width:0.493369"
+           x="-85.401138"
+           y="-50.383503"
+           id="text4-3-4"
+           transform="matrix(0,-1.1061466,-0.90403929,0,0,0)"><tspan
+             id="tspan3-7-9"
+             style="fill:#ffffff;stroke-width:0.493369"
+             x="-85.401138"
+             y="-50.383503">E</tspan></text>
+        <path
+           style="fill:#ffffff;stroke-width:0.242736"
+           id="path4"
+           d="m -54.214578,-65.307152 a 7.0642328,6.7162228 0 0 1 7.064233,-6.716223 7.0642328,6.7162228 0 0 1 7.064233,6.716223"
+           transform="scale(-1)" />
+        <path
+           style="fill:#ffffff;stroke-width:0.242736"
+           id="path4-1"
+           d="m -67.236272,-65.309769 a 7.0642328,6.7162228 0 0 1 7.064233,-6.716222 7.0642328,6.7162228 0 0 1 7.064233,6.716222"
+           transform="scale(-1)" />
+        <path
+           style="fill:#ffffff;stroke-width:0.242736"
+           id="path4-1-8"
+           d="m -80.086114,-65.309921 a 7.0642328,6.7162228 0 0 1 7.064233,-6.716223 7.0642328,6.7162228 0 0 1 7.064233,6.716223"
+           transform="scale(-1)" />
+      </g>
+    </g>
+  </g>
+</svg>
