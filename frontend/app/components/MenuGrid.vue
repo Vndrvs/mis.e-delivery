@@ -48,7 +48,7 @@ const saleOnly = ref(false);
 const makiOnly = ref(false);
 const bowlOnly = ref(false);
 const veganOnly = ref(false);
-const sortType = ref<'price_low' | 'price_high' | 'newest' | 'category'>('newest');
+const sortType = ref<'price_low' | 'price_high' | 'newest' | 'category' | null>(null);
 
 interface StrapiProduct {
   id: number;
@@ -79,7 +79,7 @@ const handleCategoryChange = (cat: string) => {
   saleOnly.value = false;
 };
 
-const handleSort = (type: 'price_low' | 'price_high' | 'newest' | 'category') => {
+const handleSort = (type: 'price_low' | 'price_high' | 'newest' | 'category' | null) => {
   sortType.value = type;
 };
 

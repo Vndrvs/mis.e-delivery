@@ -20,7 +20,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
     <div>
         <NavMobileHeader class="header lg:hidden sticky w-full z-50 transition-transform duration-300" />
         <header
-            class="header hidden lg:block fixed top-0 w-full z-40 transition-transform duration-300"
+            class="header hidden lg:block sticky w-full z-40 transition-transform duration-300"
             :class="{ 
                 '-translate-y-full': !isVisible,
                 'bg-primary shadow-md': true 

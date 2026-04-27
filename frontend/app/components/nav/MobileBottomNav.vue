@@ -21,7 +21,7 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
             <img 
               v-if="item.icon" 
               :src="item.icon" 
-              class="w-7 h-7 icon-brand-pink" 
+              class="w-7 h-7 icon-brand" 
               :alt="item.name" 
             />
             <span class="text-[10px] font-bold mt-0.5 text-primary">{{ item.name }}</span>
@@ -61,7 +61,7 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
 	filter: brightness(0) invert(1);
 }
 
-.icon-brand-pink {
+.icon-brand {
 	filter: brightness(0) saturate(100%) invert(41%) sepia(92%) saturate(710%) hue-rotate(287deg) brightness(103%) contrast(97%);
 }
 </style>
