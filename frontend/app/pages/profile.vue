@@ -1,20 +1,22 @@
 <script setup lang="ts">
 const user = useStrapiUser()
 const { logout } = useStrapiAuth()
-const router = useRouter()
+const localePath = useLocalePath() 
 
 definePageMeta({
   middleware: () => {
     const user = useStrapiUser()
+    const localePath = useLocalePath() // Need to call it inside the middleware context too
+    
     if (!user.value) {
-      return navigateTo('/login')
+      return navigateTo(localePath('login')) 
     }
   }
 })
 
 async function handleLogout() {
   await logout()
-  router.push('/login')
+  await navigateTo(localePath('login')) 
 }
 </script>
 

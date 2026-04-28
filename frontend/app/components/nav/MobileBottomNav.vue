@@ -3,7 +3,7 @@ import { getNavigation } from '~/utils/useNavigation';
 const { t } = useI18n();
 const localePath = useLocalePath(); 
 
-const navItems = computed(() => getNavigation('home', t, localePath));
+const navItems = computed(() => getNavigation('home', t));
 
 const isCart = (to: string) => to === 'cart' || to === '/cart';
 </script>

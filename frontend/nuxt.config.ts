@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     defaultLocale: 'hu',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
+    customRoutes: 'config',
     
     locales: [
       { 
@@ -56,6 +57,10 @@ export default defineNuxtConfig({
       'orders': {
         hu: '/rendelesek',
         en: '/orders'
+      },
+      'login': {
+        hu: '/bejelentkezes',
+        en: '/login'
       },
       'profile': {
         hu: '/profil',

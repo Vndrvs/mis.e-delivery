@@ -1,48 +1,11 @@
-<template>
-  <div class="bg-page min-h-screen">
-    <div class="container mx-auto max-w-7xl">
-      
-      <MenuControllers 
-        :categories="uniqueCategories" 
-        :active-category="currentCategory"
-		    :sale-only="saleOnly"
-        :maki-only="makiOnly"
-        :bowl-only="bowlOnly"
-        :vegan-only="veganOnly"
-        :sort-type="sortType"
-        @update:category="handleCategoryChange"
-        @update:sort="handleSort"
-		    @update:saleOnly="saleOnly = $event"
-        @update:makiOnly="handleTypeFilter('maki', $event)"
-        @update:bowlOnly="handleTypeFilter('bowl', $event)"
-        @update:veganOnly="handleTypeFilter('vegan', $event)"
-      />
-
-      <div v-if="!pending" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-4 md:px-0">
-        <ProductCard
-          v-for="product in filteredProducts"
-          :key="product.id"
-          :title="product.name"
-          :category="product.product_type"
-          :piece-count="product.piece_count"
-          :on-sale="product.on_sale"
-          :sale-price="product.sale_price"
-          :price="product.price"
-          :image="product.images?.[0]?.url"
-        />
-      </div>
-
-      <div v-else class="flex justify-center py-20">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-      
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-const ALL = 'all';
+const { find } = useStrapi();
+const { locale } = useI18n();
+const strapiLocale = computed(() => locale.value === 'hu' ? 'hu-HU' : 'en');
+
 const config = useRuntimeConfig();
+
+const ALL = 'all';
 const currentCategory = ref(ALL);
 const saleOnly = ref(false);
 const makiOnly = ref(false);
@@ -62,15 +25,22 @@ interface StrapiProduct {
   images?: Array<{ url: string }>;
 }
 
-const { data: products, pending } = await useFetch<{ data: StrapiProduct[] }>(
-  `${config.public.strapiUrl}/api/products?populate=*`
+const { data: products, pending } = await useAsyncData(
+  'products-list',
+  () => find('products', { 
+    populate: '*',
+    locale: strapiLocale.value 
+  }) as unknown as Promise<{ data: StrapiProduct[] }>, // <-- Added "as unknown" here
+  { 
+    watch: [strapiLocale] 
+  }
 );
 
 const uniqueCategories = computed(() => {
   if (!products.value?.data) return [ALL];
 
-  const cats = products.value.data.map(p => p.product_type);
-  return [ALL, ...new Set(cats)];
+  const categories = products.value.data.map(p => p.product_type);
+  return [ALL, ...new Set(categories)];
 
 });
 
@@ -143,3 +113,45 @@ const handleTypeFilter = (type: 'maki' | 'bowl' | 'vegan', value: boolean) => {
 };
 
 </script>
+
+<template>
+  <div class="bg-page min-h-screen">
+    <div class="container mx-auto max-w-7xl">
+      
+      <MenuControllers 
+        :categories="uniqueCategories" 
+        :active-category="currentCategory"
+		    :sale-only="saleOnly"
+        :maki-only="makiOnly"
+        :bowl-only="bowlOnly"
+        :vegan-only="veganOnly"
+        :sort-type="sortType"
+        @update:category="handleCategoryChange"
+        @update:sort="handleSort"
+		    @update:saleOnly="saleOnly = $event"
+        @update:makiOnly="handleTypeFilter('maki', $event)"
+        @update:bowlOnly="handleTypeFilter('bowl', $event)"
+        @update:veganOnly="handleTypeFilter('vegan', $event)"
+      />
+
+      <div v-if="!pending" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-4 md:px-0">
+        <ProductCard
+          v-for="product in filteredProducts"
+          :key="product.id"
+          :title="product.name"
+          :category="product.product_type"
+          :piece-count="product.piece_count"
+          :on-sale="product.on_sale"
+          :sale-price="product.sale_price"
+          :price="product.price"
+          :image="product.images?.[0]?.url"
+        />
+      </div>
+
+      <div v-else class="flex justify-center py-20">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+      
+    </div>
+  </div>
+</template>

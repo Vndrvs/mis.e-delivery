@@ -1,5 +1,4 @@
 export const useNavMenu = () => {
-	
 	const route = useRoute();
 	const { t } = useI18n();
 	
@@ -17,7 +16,5 @@ export const useNavMenu = () => {
 	return {
 		navItems,
 		currentPath,
-		
 	};
-	
 };

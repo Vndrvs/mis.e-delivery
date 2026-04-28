@@ -8,6 +8,8 @@ import flagHu from '~/assets/img/flag-hu.svg';
 type Locale = 'en' | 'hu';
 
 const { locale, setLocale } = useI18n();
+const localePath = useLocalePath();
+
 const isLangMenuOpen = ref(false);
 
 const currentFlag = computed(() => {
@@ -37,7 +39,7 @@ onUnmounted(() => {
 <template>
   <header class="fixed top-0 left-0 w-full flex items-center justify-between py-3 px-4 md:px-8 bg-page z-[9999]">
     
-    <NuxtLink to="/" class="flex bg-primary p-1 items-center hover:opacity-80 transition-opacity rounded-full">
+    <NuxtLink :to="localePath('index')" class="flex bg-primary p-1 items-center hover:opacity-80 transition-opacity rounded-full">
       <img src="~/assets/img/brand-outline.svg" alt="Mis.e" class="h-10 w-auto brightness-100" />
     </NuxtLink>
 
