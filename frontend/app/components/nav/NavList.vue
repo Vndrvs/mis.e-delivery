@@ -1,5 +1,15 @@
 <script setup lang="ts">
-const { navItems } = useNavMenu();
+defineProps({
+  navs: {
+    type: Array as PropType<any[]>,
+    required: true
+  },
+  currentPath: {
+    type: String,
+    default: '/'
+  }
+});
+
 const localePath = useLocalePath();
 </script>
 
@@ -7,7 +17,7 @@ const localePath = useLocalePath();
   <nav class="navigation w-full">
     <ul class="navigation__list flex md:justify-start md:gap-8 list-none p-0 m-0">
       <li 
-        v-for="item in navItems" 
+        v-for="item in navs" 
         :key="item.to" 
         class="navigation__item"
       >
@@ -16,7 +26,7 @@ const localePath = useLocalePath();
           class="navigation__link"
           active-class="navigation__link--active"
         >
-          <span class="navigation__text text-">{{ item.name }}</span>
+          <span class="navigation__text">{{ item.name }}</span>
         </NuxtLink>
       </li>
     </ul>

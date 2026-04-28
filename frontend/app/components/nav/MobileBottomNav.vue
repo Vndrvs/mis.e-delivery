@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const { navItems } = useNavMenu();
-const localePath = useLocalePath();
+import { getNavigation } from '~/utils/useNavigation';
+const { t } = useI18n();
+const localePath = useLocalePath(); 
+
+const navItems = computed(() => getNavigation('home', t, localePath));
 
 const isCart = (to: string) => to === 'cart' || to === '/cart';
 </script>

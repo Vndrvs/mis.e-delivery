@@ -17,7 +17,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss', 
     '@pinia/nuxt', 
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/strapi'
   ],
   i18n: {
     defaultLocale: 'hu',
@@ -52,6 +53,18 @@ export default defineNuxtConfig({
         hu: '/kosar',
         en: '/cart'
       },
+      'orders': {
+        hu: '/rendelesek',
+        en: '/orders'
+      },
+      'profile': {
+        hu: '/profil',
+        en: '/profile'
+      },
+      'register': {
+        hu: '/regisztracio',
+        en: '/register'
+      },
       'admin-products': {
         hu: '/admin/termekek',
         en: '/admin/products'
@@ -65,6 +78,12 @@ export default defineNuxtConfig({
         en: '/admin/analytics'
       }
     }
+  },
+  strapi: {
+    url: 'http://46.101.159.56:1337',
+    prefix: '/api',
+    version: 'v4',
+    cookie: { path: '/' }
   },
   ssr: false
 })

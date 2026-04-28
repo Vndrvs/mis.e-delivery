@@ -60,7 +60,7 @@ const footerColumns = [
 		</div>
 		<div class="site-footer__bottom">
 			<p class="site-footer__copyright">
-				&copy; {{ new Date().getFullYear() }} Nikolett Agoston
+				&copy; {{ new Date().getFullYear() }} Vndrvs
 			</p>
 		</div>
 	</footer>

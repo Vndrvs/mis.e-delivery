@@ -14,21 +14,31 @@ export type Navigation = {
   children?: Navigation[];
 };
 
-export function getNavigation(where: Where, t: any): Navigation[] {
+export function getNavigation(
+  where: Where, 
+  t: any, 
+  localePath: (route: string) => string // Define as a function taking one string
+): Navigation[] {
+  
+  // Safety check to prevent the 500 error if initialization fails
+  if (typeof localePath !== 'function') {
+    return [];
+  }
+
   switch (where) {
     case "home":
       return [
-        { name: t('nav.home'), to: 'index', icon: homeIcon },
-        { name: t('nav.menu'), to: 'menu', icon: menuIcon },
-        { name: t('nav.cart'), to: 'cart', icon: cartIcon },
-        { name: t('nav.orders'), to: 'orders', icon: boxIcon },
-        { name: t('nav.profile'), to: 'profile', icon: userIcon },
+        { name: t('nav.home'), to: localePath('index'), icon: homeIcon },
+        { name: t('nav.menu'), to: localePath('menu'), icon: menuIcon },
+        { name: t('nav.cart'), to: localePath('cart'), icon: cartIcon },
+        { name: t('nav.orders'), to: localePath('orders'), icon: boxIcon },
+        { name: t('nav.profile'), to: localePath('profile'), icon: userIcon },
       ];
     case "admin":
       return [
-        { name: t('nav.products'), to: 'admin-products' },
-        { name: t('nav.orders'), to: 'admin-orders' },
-        { name: t('nav.analytics'), to: 'admin-analytics' },
+        { name: t('nav.products'), to: localePath('admin-products') },
+        { name: t('nav.orders'), to: localePath('admin-orders') },
+        { name: t('nav.analytics'), to: localePath('admin-analytics') },
       ];
     default:
       return [];

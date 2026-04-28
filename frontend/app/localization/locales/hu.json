@@ -32,5 +32,37 @@
       "newest": "Legújabb",
       "category": "Kategória"
     }
+  },
+  "login": {
+    "title": "bejelentkezés",
+    "email": "email cím",
+    "placeholder": "pelda{'@'}abc.com",
+    "password": "jelszó",
+    "btn": "bejelentkezés",
+    "forgot": "Elfelejtetted a jelszavad? ",
+    "forgot-btn": "Jelszó visszaállítása",
+    "register": "Még nem vagy felhasználónk? ",
+    "register-btn": "Profil létrehozása"
+  },
+  "register": {
+    "title": "Regisztráció",
+    "email": "email cím",
+    "placeholder": "pelda{'@'}abc.com",
+    "password": "jelszó",
+    "confirm": "jelszó megerősítése",
+    "btn": "regisztráció",
+    "label": "A regisztrációval elfogadod az ",
+    "privacy": "Adatvédelmi Szerződést",
+    "label-2": " és a ",
+    "terms": "Felhasználási Feltételeket"
+  },
+  "profile": {
+    "contact": "kapcsolati adatok",
+    "history": "leadott rendeléseim",
+    "payments": "fizetési módok",
+    "addresses": "mentett címek",
+    "settings": "beállítások",
+    "support": "ügyfélszolgálat",
+    "logout": "kijelentkezés"
   }
 }

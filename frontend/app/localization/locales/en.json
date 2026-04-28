@@ -32,6 +32,37 @@
       "newest": "Newest",
       "category": "Category"
     }
-
+  },
+  "login": {
+    "title": "login",
+    "email": "email address",
+    "placeholder": "example{'@'}abc.com",
+    "password": "password",
+    "btn": "login",
+    "forgot": "Forgot password?",
+    "forgot-btn": "Reset Password",
+    "register": "Not registered yet?",
+    "register-btn": "Create Account"
+  },
+  "register": {
+    "title": "register",
+    "email": "email address",
+    "placeholder": "example{'@'}abc.com",
+    "password": "password",
+    "confirm": "confirm password",
+    "btn": "register me",
+    "label": "By registering, you accept our ",
+    "privacy": "Privacy Policy",
+    "label-2": " and our ",
+    "terms": "Terms of Service"
+  },
+  "profile": {
+    "contact": "contact details",
+    "history": "my order history",
+    "payments": "payment methods",
+    "addresses": "saved addresses",
+    "settings": "settings",
+    "support": "contact support",
+    "logout": "logout"
   }
 }

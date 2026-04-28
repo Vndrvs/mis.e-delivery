@@ -2,7 +2,10 @@
 import brandLogo from "@/assets/img/brand-outline.svg";
 import userIcon from "@/assets/img/user-icon.svg";
 import { ref, onMounted, onUnmounted } from "vue";
+
 const { navItems, currentPath } = useNavMenu();
+const localePath = useLocalePath();
+
 const lastScrollY = ref(0);
 const isVisible = ref(true);
 
@@ -28,12 +31,12 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
         >
             <div class="header__container mx-auto flex items-center px-6 py-3">
                 
-                <NuxtLink to="/" class="flex-shrink-0">
-  					<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-						<img :src="brandLogo"
-							alt="Brand Logo" 
-							class="header__brand h-10 w-auto icon-black"  />
-					</div>
+                <NuxtLink :to="localePath('index')" class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
+                        <img :src="brandLogo"
+                            alt="Brand Logo" 
+                            class="header__brand h-10 w-auto icon-black"  />
+                    </div>
                 </NuxtLink>
 
                 <div class="flex-grow flex justify-center">
@@ -44,7 +47,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
                     />
                 </div>
 
-                <NuxtLink to="/app-login" class="flex-shrink-0">
+                <NuxtLink :to="localePath('login')" class="flex-shrink-0">
                     <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                         <img 
                             :src="userIcon" 

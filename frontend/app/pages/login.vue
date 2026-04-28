@@ -1,10 +1,36 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+
+const { t } = useI18n()
+const { login } = useStrapiAuth()
+const user = useStrapiUser()
+const router = useRouter()
 
 const form = reactive({
   email: '',
   password: ''
 })
+
+const errorMessage = ref('')
+const loading = ref(false)
+
+async function onSubmit() {
+  loading.value = true
+  errorMessage.value = ''
+  
+  try {
+    await login({ 
+      identifier: form.email, 
+      password: form.password 
+    })
+    
+    router.push('/') 
+  } catch (e: any) {
+    errorMessage.value = e.error?.message || 'Hibás belépési adatok'
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -26,48 +52,51 @@ const form = reactive({
 
     <div class="login-page__content flex-grow w-full bg-white px-6 py-10 max-w-lg mx-auto flex flex-col z-10" style="background-color: white !important;">
       
-      <h1 class="text-3xl font-bold text-txt-sec mb-8">Login</h1>
+      <h1 class="text-3xl font-bold text-txt-sec mb-8 capitalize"> {{ $t('login.title') }} </h1>
 
-      <form class="flex flex-col gap-6" @submit.prevent>
+      <form class="flex flex-col gap-6" @submit.prevent="onSubmit">
+		<div v-if="errorMessage" class="text-red-500 text-sm font-bold bg-red-50 p-3 rounded-lg">
+			{{ errorMessage }}
+		</div>
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-bold text-txt-sec uppercase tracking-tight">Email Address</label>
+          <label class="text-sm font-bold text-txt-sec uppercase tracking-tight">{{ $t('login.email') }}</label>
           <input 
             v-model="form.email"
             type="email" 
-            placeholder="e.g. name@company.com"
+            :placeholder="$t('login.placeholder')"
             class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+			required
           />
         </div>
 
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-bold text-txt-sec uppercase tracking-tight">Password</label>
+          <label class="text-sm font-bold text-txt-sec uppercase tracking-tight">{{ $t('login.password') }}</label>
           <input 
             v-model="form.password"
             type="password" 
             placeholder="••••••••"
             class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+			required
           />
         </div>
 
-        <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-full mt-4 shadow-lg shadow-primary/20 transition-transform active:scale-95">
-          Login
+        <button type="submit" class="w-full bg-primary text-white capitalize font-bold py-4 rounded-full mt-4 shadow-lg shadow-primary/20 transition-transform active:scale-95">
+          {{ loading ? '...' : $t('login.btn') }}
         </button>
       </form>
 
       <footer class="mt-8 flex flex-col gap-4 text-center">
         <p class="text-txt-muted text-sm font-medium">
-          Forgot password? 
-          <a href="#" class="text-primary underline font-bold ml-1">Reset password</a>
+          {{ $t('login.forgot') }}
+          <a href="#" class="text-primary underline font-bold ml-1">{{ $t('login.forgot-btn') }}</a>
         </p>
         <p class="text-txt-muted text-sm font-medium">
-          Not registered yet? 
-          <a href="#" class="text-primary underline font-bold ml-1">Create Account</a>
+          {{ $t('login.register') }}
+          <NuxtLink :to="$localePath('/register')" class="text-primary underline font-bold ml-1">
+            {{ $t('login.register-btn') }}
+          </NuxtLink>
         </p>
       </footer>
     </div>
   </div>
 </template>
-
-<style>
-
-</style>
