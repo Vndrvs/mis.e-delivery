@@ -35,33 +35,7 @@ const footerColumns = [
 <template>
 	<footer class="site-footer bg-page">
 		<div class="site-footer__columns">
-			<div
-				v-for="(col, index) in footerColumns"
-				:key="index"
-				class="site-footer__column"
-			>
-				<h3 class="site-footer__title">
-					{{ col.label }}
-				</h3>
-				<ul class="site-footer__list">
-					<li
-						v-for="item in col.children"
-						:key="item.label"
-					>
-						<RouterLink
-							:to="item.to"
-							class="site-footer__link"
-						>
-							{{ item.label }}
-						</RouterLink>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="site-footer__bottom">
-			<p class="site-footer__copyright">
-				&copy; {{ new Date().getFullYear() }} Vndrvs
-			</p>
+			<h1>default footer</h1>
 		</div>
 	</footer>
 </template>

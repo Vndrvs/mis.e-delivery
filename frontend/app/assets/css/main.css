@@ -9,6 +9,8 @@
     --bg-primary: 326 95% 66%; /* brilliant rose */
     --bg-secondary: 159 43% 57%; /* silver tree */
     --bg-pill: 0 0% 85%; /* 'mid' grey */
+    --bg-accent: 341 79% 49%;
+    --bg-pink: 318 76% 85%;
 
     /* text */
     --txt-main: 0 0% 100%;
@@ -33,7 +35,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 100;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-100.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-100.woff2') format('woff2');
 }
 /* ibm-plex-sans-200 - latin */
 @font-face {
@@ -41,7 +43,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 200;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-200.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-200.woff2') format('woff2');
 }
 /* ibm-plex-sans-300 - latin */
 @font-face {
@@ -49,7 +51,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 300;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-300.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-300.woff2') format('woff2');
 }
 /* ibm-plex-sans-regular - latin */
 @font-face {
@@ -57,7 +59,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-regular.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-regular.woff2') format('woff2');
 }
 /* ibm-plex-sans-500 - latin */
 @font-face {
@@ -65,7 +67,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 500;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-500.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-500.woff2') format('woff2');
 }
 /* ibm-plex-sans-600 - latin */
 @font-face {
@@ -73,7 +75,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 600;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-600.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-600.woff2') format('woff2');
 }
 /* ibm-plex-sans-700 - latin */
 @font-face {
@@ -81,7 +83,7 @@
   font-family: 'IBM Plex Sans';
   font-style: normal;
   font-weight: 700;
-  src: url('~/app/assets/fonts/ibm-plex-sans-v23-latin-700.woff2') format('woff2');
+  src: url('~/assets/fonts/ibm-plex-sans-v23-latin-700.woff2') format('woff2');
 }
 
 /* geist-regular - latin */
@@ -90,7 +92,7 @@
   font-family: 'Geist';
   font-style: normal;
   font-weight: 400;
-  src: url('~/app/assets/fonts/geist-v4-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('~/assets/fonts/geist-v4-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geist-600 - latin */
 @font-face {
@@ -98,7 +100,7 @@
   font-family: 'Geist';
   font-style: normal;
   font-weight: 600;
-  src: url('~/app/assets/fonts/geist-v4-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('~/assets/fonts/geist-v4-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geist-700 - latin */
 @font-face {
@@ -106,7 +108,7 @@
   font-family: 'Geist';
   font-style: normal;
   font-weight: 700;
-  src: url('~/app/assets/fonts/geist-v4-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('~/assets/fonts/geist-v4-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geist-800 - latin */
 @font-face {
@@ -114,7 +116,7 @@
   font-family: 'Geist';
   font-style: normal;
   font-weight: 800;
-  src: url('~/app/assets/fonts/geist-v4-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('~/assets/fonts/geist-v4-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* geist-900 - latin */
 @font-face {
@@ -122,5 +124,5 @@
   font-family: 'Geist';
   font-style: normal;
   font-weight: 900;
-  src: url('~/app/assets/fonts/geist-v4-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('~/assets/fonts/geist-v4-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

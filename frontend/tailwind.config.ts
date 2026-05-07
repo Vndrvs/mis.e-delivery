@@ -17,6 +17,8 @@ export default {
 				primary: 'hsl(var(--bg-primary) / <alpha-value>)',
 				secondary: 'hsl(var(--bg-secondary) / <alpha-value>)',
 				pill: 'hsl(var(--bg-pill) / <alpha-value>)',
+				pink: 'hsl(var(--bg-pink) / <alpha-value>)',
+				accent: 'hsl(var(--bg-accent) / <alpha-value>)',
 				badge: 'hsl(var(--txt-main) / <alpha-value>)',
 				'txt-main': 'hsl(var(--txt-main) / <alpha-value>)',
 				'txt-sec': 'hsl(var(--txt-sec) / <alpha-value>)',

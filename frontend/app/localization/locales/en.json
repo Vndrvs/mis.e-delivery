@@ -21,6 +21,9 @@
     "all": "all"
   },
   "products": {
+    "price": "price",
+    "count": "piece | pieces",
+    "item": "item",
     "sale": "Sale",
     "sort": "Sort",
     "maki": "Maki",
@@ -32,6 +35,21 @@
       "newest": "Newest",
       "category": "Category"
     }
+  },
+  "cart": {
+    "empty": "your cart is empty",
+    "back-btn": "back to menu",
+    "subtotal": "subtotal",
+    "delivery": "delivery free",
+    "total": "total",
+    "promotion": "promotion code",
+    "promo-btn": "apply",
+    "btn": "order"
+  },
+  "errors": {
+    "email_taken": "This email address is already taken.",
+    "passwords_mismatch": "The passwords do not match.",
+    "default_register": "Registration failed. Please try again."
   },
   "login": {
     "title": "login",
@@ -64,5 +82,18 @@
     "settings": "settings",
     "support": "contact support",
     "logout": "logout"
+  },
+  "address": {
+    "addTitle": "Add New Address",
+    "street": "Street Address",
+    "city": "City",
+    "state": "State / Province",
+    "zip": "ZIP / Postal Code",
+    "country": "Country",
+    "isDefault": "Set as default address",
+    "save": "Save Address",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "error": "Failed to save the address. Please try again."
   }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
+const localePath = useLocalePath()
 const { register } = useStrapiAuth()
-const router = useRouter()
 
 const form = reactive({
   email: '',
@@ -15,6 +15,12 @@ const error = ref('')
 async function onRegister() {
   loading.value = true
   error.value = ''
+
+  if (form.password !== form.confirm) {
+    error.value = t('errors.passwords_mismatch')
+    loading.value = false
+    return
+  }
   
   try {
     await register({ 
@@ -23,9 +29,16 @@ async function onRegister() {
       password: form.password 
     })
     
-    router.push('/etlap')
+    await navigateTo(localePath('menu'))
+
   } catch (e: any) {
-    error.value = e.error?.message || 'Sikertelen regisztráció'
+    const apiError = e.error?.message || ''
+
+    if (apiError.toLowerCase().includes('already taken')) {
+      error.value = t('errors.email_taken')
+    } else {
+      error.value = t('errors.default_register') 
+    }
   } finally {
     loading.value = false
   }

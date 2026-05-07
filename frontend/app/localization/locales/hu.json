@@ -21,6 +21,9 @@
     "all": "összes"
   },
   "products": {
+    "price": "ár",
+    "count": "darab | darab",
+    "item": "adag",
     "sale": "Akciók",
     "sort": "Rendezés",
     "maki": "Maki",
@@ -32,6 +35,16 @@
       "newest": "Legújabb",
       "category": "Kategória"
     }
+  },
+  "cart": {
+    "empty": "a kosarad jelenleg üres",
+    "back-btn": "vissza a menühöz",
+    "subtotal": "résszösszeg",
+    "delivery": "szállítási díj",
+    "total": "összesen",
+    "promotion": "kuponkód",
+    "promo-btn": "beváltom",
+    "btn": "rendelés"
   },
   "login": {
     "title": "bejelentkezés",
@@ -56,6 +69,11 @@
     "label-2": " és a ",
     "terms": "Felhasználási Feltételeket"
   },
+  "errors": {
+    "email_taken": "Ez az e-mail cím már foglalt.",
+    "passwords_mismatch": "A két jelszó nem egyezik.",
+    "default_register": "Sikertelen regisztráció. Kérjük, próbálja újra."
+  },
   "profile": {
     "contact": "kapcsolati adatok",
     "history": "leadott rendeléseim",
@@ -64,5 +82,18 @@
     "settings": "beállítások",
     "support": "ügyfélszolgálat",
     "logout": "kijelentkezés"
+  },
+  "address": {
+    "addTitle": "Új Cím Hozzáadása",
+    "street": "Utca, Házszám",
+    "city": "Város",
+    "state": "Megye / Állam",
+    "zip": "Irányítószám",
+    "country": "Ország",
+    "isDefault": "Beállítás alapértelmezettként",
+    "save": "Cím Mentése",
+    "saving": "Mentés...",
+    "cancel": "Mégse",
+    "error": "Hiba történt a cím mentésekor. Kérjük, próbálja újra."
   }
 }

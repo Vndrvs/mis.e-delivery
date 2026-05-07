@@ -2,7 +2,9 @@
 const { find } = useStrapi();
 const { locale } = useI18n();
 const strapiLocale = computed(() => locale.value === 'hu' ? 'hu-HU' : 'en');
+import { useCartStore } from '~/stores/cart'
 
+const cartStore = useCartStore()
 const config = useRuntimeConfig();
 
 const ALL = 'all';
@@ -17,6 +19,7 @@ interface StrapiProduct {
   id: number;
   name: string;
   product_type: string;
+  is_maki: boolean;
   piece_count: number;
   on_sale: boolean;
   price: number;
@@ -30,7 +33,7 @@ const { data: products, pending } = await useAsyncData(
   () => find('products', { 
     populate: '*',
     locale: strapiLocale.value 
-  }) as unknown as Promise<{ data: StrapiProduct[] }>, // <-- Added "as unknown" here
+  }) as unknown as Promise<{ data: StrapiProduct[] }>,
   { 
     watch: [strapiLocale] 
   }
@@ -59,7 +62,7 @@ const filteredProducts = computed(() => {
   let result = [...products.value.data];
 
   if (makiOnly.value) {
-    result = result.filter(p => p.product_type === 'maki');
+    result = result.filter(p => p.is_maki === true);
   }
   if (bowlOnly.value) {
     result = result.filter(p => p.product_type === 'bowl');
@@ -145,6 +148,7 @@ const handleTypeFilter = (type: 'maki' | 'bowl' | 'vegan', value: boolean) => {
           :sale-price="product.sale_price"
           :price="product.price"
           :image="product.images?.[0]?.url"
+          @add="cartStore.addToCart(product)"
         />
       </div>
 
