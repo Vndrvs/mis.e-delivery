@@ -92,7 +92,7 @@ async function onSubmit() {
         </p>
         <p class="text-txt-muted text-sm font-medium">
           {{ $t('login.register') }}
-          <NuxtLink :to="$localePath('/register')" class="text-primary underline font-bold ml-1">
+          <NuxtLink :to="$localePath('register')" class="text-primary underline font-bold ml-1">
             {{ $t('login.register-btn') }}
           </NuxtLink>
         </p>

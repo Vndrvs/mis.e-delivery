@@ -60,7 +60,6 @@ async function onRegister() {
 				<h1 class="text-primary text-2xl font-bold">Mis.e</h1>
 			</div>
 		</header>
-		
 		<div class="register-page__content flex-grow w-full bg-white px-6 py-10 max-w-lg mx-auto flex flex-col z-10">
 			<h1 class="capitalize text-3xl font-bold text-txt-sec mb-8">{{ $t('register.title') }}</h1>
 			<form class="flex flex-col gap-6" @submit.prevent="onRegister">
@@ -96,16 +95,24 @@ async function onRegister() {
 						class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
 						required
 					/>
-				</div>	
-				
+				</div>
 				<button type="submit" class="w-full capitalize bg-primary text-white font-bold py-4 rounded-full mt-4 shadow-lg shadow-primary/20 transition-transform active:scale-95" :disabled="loading">
 					{{ loading ? '...' : $t('register.btn') }}
 				</button>
 			</form>
-		
+			<footer class="mt-8 flex flex-col gap-4 text-center">
+				<p class="text-txt-muted text-sm font-medium">
+				{{ $t('register.label') }}
+				<a href="#" class="text-primary underline font-bold ml-1">{{ $t('register.privacy') }}</a>
+				</p>
+				<p class="text-txt-muted text-sm font-medium">
+				{{ $t('register.label-2') }}
+				<NuxtLink :to="$localePath('register')" class="text-primary underline font-bold ml-1">
+					{{ $t('register.terms') }}.
+				</NuxtLink>
+				
+				</p>
+			</footer>
 		</div>
-	
-	
 	</div>
-  
 </template>

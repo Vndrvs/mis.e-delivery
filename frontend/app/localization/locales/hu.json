@@ -95,5 +95,15 @@
     "saving": "Mentés...",
     "cancel": "Mégse",
     "error": "Hiba történt a cím mentésekor. Kérjük, próbálja újra."
+  },
+  "home": {
+    "promotionsTitle": "Kedvezmények",
+    "voucherTitle": "Kuponok!",
+    "voucherParagraph": "ha feliratkozol akciókról és fontos téged érintő változásokról szóló hírlevelünkre, 20%-os kuponnal jutalmazunk meg a következő rendelésedhez.",
+    "voucherSignupParagraph:": "ha regisztrálod magad, mielőtt rendelsz, első sushi rendelésedhez 20%-os kupont adunk ajándékba.",
+    "voucherSignupButton": "feliratkozom",
+    "voucherRegisterButton": "regisztrálok",
+    "sushiTitle": "a hónap",
+    "sushiTitleAccent": "sushija"
   }
 }
