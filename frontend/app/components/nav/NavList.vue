@@ -14,8 +14,8 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-  <nav class="navigation w-full">
-    <ul class="navigation__list flex md:justify-start md:gap-8 list-none p-0 m-0">
+  <nav class="navigation w-full px-4 justify-end">
+    <ul class="navigation__list flex md:justify-end md:gap-12 list-none p-0 m-0">
       <li 
         v-for="item in navs" 
         :key="item.to" 
@@ -23,35 +23,12 @@ const localePath = useLocalePath();
       >
         <NuxtLink 
           :to="localePath(item.to)" 
-          class="navigation__link"
+          class="navigation__link font-bold"
           active-class="navigation__link--active"
         >
-          <span class="navigation__text">{{ item.name }}</span>
+          <span class="navigation__text font-bold text-white">{{ item.name }}</span>
         </NuxtLink>
       </li>
     </ul>
   </nav>
 </template>
-
-<style scoped lang="postcss">
-
-.navigation__item {
-  @apply flex-1 md:flex-none;
-}
-
-.navigation__link {
-  @apply text-white flex flex-col items-center justify-center py-3 md:py-2 px-4 no-underline transition-colors duration-200;
-}
-
-.navigation__link:hover {
-  @apply opacity-80;
-}
-
-.navigation__link--active {
-  @apply font-bold;
-}
-
-.navigation__text {
-  @apply text-[12px] md:text-[16px] font-medium;
-}
-</style>

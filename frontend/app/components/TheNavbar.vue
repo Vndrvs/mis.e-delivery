@@ -1,10 +1,42 @@
 <script setup lang="ts">
 import brandLogo from "@/assets/img/brand-outline.svg";
 import userIcon from "@/assets/img/user-icon.svg";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+
+import flagEn from '~/assets/img/flag-en.svg';
+import flagHu from '~/assets/img/flag-hu.svg';
+
+type Locale = 'en' | 'hu';
+
+const { locale, setLocale } = useI18n();
+const localePath = useLocalePath();
+
+const isLangMenuOpen = ref(false);
+
+const currentFlag = computed(() => {
+  return locale.value === 'hu' ? flagHu : flagEn;
+});
+
+const changeLanguage = (newLocale: string) => {
+  setLocale(newLocale as Locale);
+  isLangMenuOpen.value = false;
+};
+
+const closeDropdown = (e: MouseEvent) => {
+  if (!(e.target as Element).closest('.relative')) {
+    isLangMenuOpen.value = false;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('click', closeDropdown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('click', closeDropdown);
+});
 
 const { navItems, currentPath } = useNavMenu();
-const localePath = useLocalePath();
 
 const lastScrollY = ref(0);
 const isVisible = ref(true);
@@ -23,7 +55,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
     <div>
         <NavMobileHeader class="header lg:hidden sticky w-full z-50 transition-transform duration-300" />
         <header
-            class="header hidden lg:block sticky w-full z-40 transition-transform duration-300"
+            class="header hidden lg:block sticky w-full z-[60] transition-transform duration-300"
             :class="{ 
                 '-translate-y-full': !isVisible,
                 'bg-primary shadow-md': true 
@@ -31,15 +63,16 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
         >
             <div class="header__container mx-auto flex items-center px-6 py-3">
                 
-                <NuxtLink :to="localePath('index')" class="flex-shrink-0">
+                <NuxtLink :to="localePath('index')" class="flex items-center flex-row gap-2">
                     <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
                         <img :src="brandLogo"
                             alt="Brand Logo" 
                             class="header__brand h-10 w-auto icon-black"  />
                     </div>
+                    <h1 class="text-3xl font-bold text-white">Mis.e</h1>
                 </NuxtLink>
 
-                <div class="flex-grow flex justify-center">
+                <div class="flex-grow flex">
                     <NavList
                         :navs="navItems"
                         :current-path="currentPath"
@@ -47,15 +80,39 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
                     />
                 </div>
 
-                <NuxtLink :to="localePath('login')" class="flex-shrink-0">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
-                        <img 
-                            :src="userIcon" 
-                            class="w-6 h-6 icon-white" 
-                            alt="User" 
-                        />
+                <div class="relative flex items-center ml-4">
+                    
+                    <button 
+                        @click.stop="isLangMenuOpen = !isLangMenuOpen"
+                        class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors border border-white/30"
+                    >
+                        <img :src="currentFlag" class="w-6 h-4 object-cover rounded-sm shadow-sm" alt="Language" />
+                    </button>
+             
+                    <div 
+                        v-if="isLangMenuOpen" 
+                        class="absolute top-[120%] right-0 w-40 bg-page border border-str-light rounded-2xl shadow-xl overflow-hidden z-[99999]"
+                    >
+                        <button 
+                            @click="changeLanguage('en')"
+                            class="w-full flex items-center gap-3 px-4 py-3 text-sm text-txt-sec hover:bg-pill transition-colors"
+                            :class="{ 'font-bold bg-pill text-primary': locale === 'en' }"
+                        >
+                            <img :src="flagEn" class="w-5 h-3.5 object-cover rounded-[2px]" alt="English" />
+                            {{ $t('language_toggle.english') }}
+                        </button>
+
+                        <button 
+                            @click="changeLanguage('hu')"
+                            class="w-full flex items-center gap-3 px-4 py-3 text-sm text-txt-sec hover:bg-pill transition-colors"
+                            :class="{ 'font-bold bg-pill text-primary': locale === 'hu' }"
+                        >
+                            <img :src="flagHu" class="w-5 h-3.5 object-cover rounded-[2px]" alt="Magyar" />
+                            {{ $t('language_toggle.hungarian') }}
+                        </button>
                     </div>
-                </NuxtLink>
+
+                </div>
             </div>
         </header>
 

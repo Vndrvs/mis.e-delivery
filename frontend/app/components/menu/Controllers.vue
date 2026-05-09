@@ -1,3 +1,80 @@
+<script setup lang="ts">
+const { locale, t } = useI18n();
+
+const props = defineProps<{
+  categories: string[];
+  activeCategory: string;
+  saleOnly: boolean;
+  makiOnly: boolean;
+  bowlOnly: boolean;
+  veganOnly: boolean;
+  sortType: string | null;
+}>();
+
+const emit = defineEmits([
+  'update:category', 
+  'update:sort', 
+  'update:saleOnly',
+  'update:makiOnly',
+  'update:bowlOnly',
+  'update:veganOnly'
+]);
+
+const isCategoryOpen = ref(false);
+const isSortOpen = ref(false);
+
+const anyTypeActive = computed(() => 
+  props.makiOnly || props.bowlOnly || props.veganOnly
+);
+
+const isInactive = (type: 'maki' | 'bowl' | 'vegan') => {
+  if (!anyTypeActive.value) return false;
+  if (type === 'maki') return !props.makiOnly;
+  if (type === 'bowl') return !props.bowlOnly;
+  if (type === 'vegan') return !props.veganOnly;
+
+  return false;
+};
+
+const getCategoryLabel = (cat: string) => {
+  if (!cat) return '';
+  const normalized = cat.toLowerCase();
+
+  return t(`categories.${normalized}`);
+};
+
+const sortOptions = computed(() => [
+  { id: 'price_low', label: t('products.sort_options.price_low') },
+  { id: 'price_high', label: t('products.sort_options.price_high') },
+  { id: 'newest', label: t('products.sort_options.newest') },
+  { id: 'category', label: t('products.sort_options.category') }
+]);
+
+const selectCategory = (cat: string) => {
+  emit('update:category', cat);
+  isCategoryOpen.value = false;
+};
+
+const clearSort = () => {
+  emit('update:sort', null);
+  isSortOpen.value = false;
+};
+
+const selectSort = (type: string) => {
+  emit('update:sort', type);
+  isSortOpen.value = false;
+};
+
+onMounted(() => {
+  window.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('.relative')) {
+      isCategoryOpen.value = false;
+      isSortOpen.value = false;
+    }
+  });
+});
+</script>
+
 <template>
   <div class="menu-controls__types text-txt-main flex items-center justify-between py-2 px-4 md:px-0 relative z-50 font-sans">
   
@@ -91,6 +168,7 @@
         <div v-if="isCategoryOpen" class="menu-controls__menu absolute left-0 mt-2 w-48 bg-page border border-str-light rounded-2xl shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2">
           <button 
             v-for="cat in categories" :key="cat"
+            v-show="cat"
             @click="selectCategory(cat)"
             class="menu-controls__menu-item w-full text-left px-4 py-3 text-sm text-txt-sec hover:bg-pill transition-colors capitalize"
             :class="{'menu-controls__menu-item--active font-bold text-primary': activeCategory === cat}"
@@ -146,82 +224,3 @@
     </div>
 </template>
 
-<script setup lang="ts">
-const { locale, t } = useI18n();
-
-const props = defineProps<{
-  categories: string[];
-  activeCategory: string;
-  saleOnly: boolean;
-  makiOnly: boolean;
-  bowlOnly: boolean;
-  veganOnly: boolean;
-  sortType: string | null;
-}>();
-
-const emit = defineEmits([
-  'update:category', 
-  'update:sort', 
-  'update:saleOnly',
-  'update:makiOnly',
-  'update:bowlOnly',
-  'update:veganOnly'
-]);
-
-const isCategoryOpen = ref(false);
-const isSortOpen = ref(false);
-
-const anyTypeActive = computed(() => 
-  props.makiOnly || props.bowlOnly || props.veganOnly
-);
-
-const isInactive = (type: 'maki' | 'bowl' | 'vegan') => {
-  if (!anyTypeActive.value) return false;
-  if (type === 'maki') return !props.makiOnly;
-  if (type === 'bowl') return !props.bowlOnly;
-  if (type === 'vegan') return !props.veganOnly;
-
-  return false;
-};
-
-const getCategoryLabel = (cat: string) => {
-  const normalized = cat.toLowerCase();
-
-  if (normalized === 'vegan') {
-    return t('categories.sushi');
-  }
-
-  return t(`categories.${normalized}`);
-};
-
-const sortOptions = computed(() => [
-  { id: 'price_low', label: t('products.sort_options.price_low') },
-  { id: 'price_high', label: t('products.sort_options.price_high') },
-  { id: 'newest', label: t('products.sort_options.newest') },
-  { id: 'category', label: t('products.sort_options.category') }
-]);
-
-const selectCategory = (cat: string) => {
-  emit('update:category', cat);
-  isCategoryOpen.value = false;
-};
-
-const clearSort = () => {
-  emit('update:sort', null);
-  isSortOpen.value = false;
-};
-
-const selectSort = (type: string) => {
-  emit('update:sort', type);
-  isSortOpen.value = false;
-};
-
-onMounted(() => {
-  window.addEventListener('click', (e) => {
-    if (!(e.target as Element).closest('.relative')) {
-      isCategoryOpen.value = false;
-      isSortOpen.value = false;
-    }
-  });
-});
-</script>

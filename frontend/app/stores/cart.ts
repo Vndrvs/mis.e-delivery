@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { computed } from 'vue'
 
 export interface CartItem {
   id: number;
@@ -79,29 +80,51 @@ export const useCartStore = defineStore('cart', () => {
     try {
       const documentIds = items.value.map(item => item.documentId);
       
+      // 1. STRICT STRAPI V5 ARRAY FORMATTING
+      // This forces the URL to look exactly like Strapi wants, guaranteeing a response!
+      const queryParams: Record<string, any> = {
+        locale: newLocale
+      };
+      documentIds.forEach((id, index) => {
+        queryParams[`filters[documentId][$in][${index}]`] = id;
+      });
+      
       const response = await client<any>('/products', {
-        query: {
-          locale: newLocale,
-          'filters[documentId][$in]': documentIds
-        }
+        query: queryParams
       });
 
-      response.data.forEach((translatedProduct: any) => {
-        const cartItem = items.value.find(item => item.documentId === translatedProduct.documentId);
-        if (cartItem) {
-          cartItem.id = translatedProduct.id;
-          cartItem.name = translatedProduct.name;
-          cartItem.name_accent = translatedProduct.name_accent;
-          
+      if (!response?.data) return;
+
+      // 2. THE NUCLEAR COOKIE OVERWRITE
+      // By using .map and creating brand new { ...objects }, we completely destroy the old 
+      // memory references, which forces Nuxt's useCookie to save the data immediately.
+      const freshItems = items.value.map(item => {
+        const translatedProduct = response.data.find((p: any) => p.documentId === item.documentId);
+        
+        if (translatedProduct) {
           const actualPrice = translatedProduct.on_sale && translatedProduct.sale_price 
             ? translatedProduct.sale_price 
             : translatedProduct.price;
             
-          cartItem.price = actualPrice;
+          return {
+            ...item, // Keeps quantity, image, and documentId untouched
+            id: translatedProduct.id,
+            name: translatedProduct.name,
+            name_accent: translatedProduct.name_accent,
+            price: actualPrice,
+            category: translatedProduct.product_type || item.category,
+            piece_count: translatedProduct.piece_count || item.piece_count,
+            count: translatedProduct.count || item.count
+          };
         }
+        
+        // If somehow not found, return a strict clone to keep reactivity safe
+        return { ...item };
       });
 
-      items.value = [...items.value];
+      // 3. Write the brand new array to the state
+      items.value = freshItems;
+
     } catch (error) {
       console.error('Failed to translate cart:', error);
     }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import brandLogo from "@/assets/img/brand-outline.svg";
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 import flagEn from '~/assets/img/flag-en.svg';
