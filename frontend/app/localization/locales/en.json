@@ -46,6 +46,28 @@
     "promo-btn": "apply",
     "btn": "order"
   },
+  "checkout": {
+    "title": "Checkout",
+    "loginPrompt": "Already have an account? Log in for faster checkout!",
+    "loginBtn": "Login",
+    "deliveryDetails": "Delivery Details",
+    "lastName": "Last Name",
+    "firstName": "First Name",
+    "email": "Email",
+    "phone": "Phone",
+    "zipCode": "Zip Code",
+    "city": "City",
+    "street": "Street, House",
+    "floorDoor": "Floor/Door",
+    "courierNote": "Courier Note",
+    "selectAddress": "Select Delivery Address",
+    "addressPlaceholder": "The user's addresses will go here.",
+    "orderSummary": "Order Summary",
+    "totalItems": "Total Items",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "pcs": "pcs"
+  },
   "errors": {
     "email_taken": "This email address is already taken.",
     "passwords_mismatch": "The passwords do not match.",
@@ -89,6 +111,16 @@
     "contactBtn": "save",
     "noAddressParagraph": "You haven't added a delivery address yet. Try adding for faster orders!",
     "addAddressBtn": "Add Address"
+  },
+  "addresses": {
+    "title": "my addresses",
+    "btn": "Add new",
+    "load": "loading",
+    "errorMsg": "Error loading addresses",
+    "noAddress": "You have no saved addresses",
+    "default": "default",
+    "edit": "edit",
+    "del": "delete"
   },
   "address": {
     "addTitle": "Add New Address",

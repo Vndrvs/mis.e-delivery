@@ -46,6 +46,28 @@
     "promo-btn": "beváltom",
     "btn": "rendelés"
   },
+  "checkout": {
+    "title": "Pénztár",
+    "loginPrompt": "Már van fiókod? Jelentkezz be a gyorsabb rendeléshez!",
+    "loginBtn": "Bejelentkezés",
+    "deliveryDetails": "Szállítási Adatok",
+    "lastName": "Vezetéknév",
+    "firstName": "Keresztnév",
+    "email": "Email",
+    "phone": "Telefonszám",
+    "zipCode": "Irányítószám",
+    "city": "Város",
+    "street": "Utca, házszám",
+    "floorDoor": "Emelet/Ajtó",
+    "courierNote": "Megjegyzés a futárnak",
+    "selectAddress": "Válassz Szállítási Címet",
+    "addressPlaceholder": "A felhasználó címei ide kerülnek.",
+    "orderSummary": "Rendelés Összegzése",
+    "totalItems": "Termékek száma",
+    "total": "Összesen",
+    "placeOrder": "Megrendelés Elküldése",
+    "pcs": "db"
+  },
   "login": {
     "title": "bejelentkezés",
     "email": "email cím",
@@ -89,6 +111,16 @@
     "contactBtn": "mentés",
     "noAddressParagraph": "Még nem adtál meg szállítási címet. Adj hozzá egyet a gyorsabb rendeléshez!",
     "addAddressBtn": "Cím hozzáadása"
+  },
+  "addresses": {
+    "title": "címeim",
+    "btn": "Új cím",
+    "load": "betöltés",
+    "errorMsg": "Hiba történt a címek betöltésekor",
+    "noAddress": "Még nem mentettél el címet",
+    "default": "alapértelmezett",
+    "edit": "szerkesztés",
+    "del": "törlés"
   },
   "address": {
     "addTitle": "Új Cím Hozzáadása",

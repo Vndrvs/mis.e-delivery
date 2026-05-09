@@ -110,7 +110,7 @@ const isProfileRoot = computed(() => {
     </div>
     
     
-    <div class="mx-auto flex flex-col lg:flex-row gap-8 lg:gap-0 rounded-3xl border border-white">
+    <div class="mx-auto flex flex-col lg:flex-row gap-8 lg:gap-0 overflow-hidden rounded-3xl lg:border-4 border-primary border-opacity-20">
       <MobileProfile 
         v-if="isProfileRoot"
         class="lg:hidden"

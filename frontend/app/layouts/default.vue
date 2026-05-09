@@ -5,6 +5,8 @@ import { useCartStore } from '~/stores/cart' // Make sure the path matches your 
 
 const route = useRoute()
 const cartStore = useCartStore()
+const localePath = useLocalePath()
+
 
 const isCartPage = computed(() => {
   return String(route.name || '').startsWith('cart')
@@ -20,7 +22,7 @@ const isCartPage = computed(() => {
     </main>
     <NuxtLink
         v-if="cartStore.cartTotalItems > 0 && !isCartPage"
-        to="/cart" 
+        :to="localePath('cart')"
         class="hidden lg:flex fixed bottom-10 right-10 z-50 items-center justify-center w-16 h-16 bg-primary text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-200"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -31,6 +33,6 @@ const isCartPage = computed(() => {
           {{ cartStore.cartTotalItems }}
         </span>
       </NuxtLink>
-    <TheFooter />
+    <TheFooter class="hidden lg:display-block" />
   </div>
 </template>

@@ -20,7 +20,7 @@ const handleAction = (item: any) => {
 
 <template>
   <div class="flex flex-col gap-8">
-    <div>
+    <div class="lg:ml-4 ">
       <h2 class="text-xl font-bold text-txt-sec text-wrap first-letter:capitalize">
         {{ t('profile.welcome') }}
         <span class="text-primary font-medium">{{ displayName }}</span>
@@ -39,7 +39,7 @@ const handleAction = (item: any) => {
           <img 
             v-if="item.icon" 
             :src="item.icon" 
-            class="w-11 h-11 icon-brand p-2 invert-100" 
+            class="lg:ml-4 w-11 h-11 icon-brand p-2 invert-100" 
             :alt="item.name" 
           />
         </div>

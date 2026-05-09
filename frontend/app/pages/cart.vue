@@ -58,7 +58,7 @@ const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + de
 </script>
 
 <template>
-	<div class="bg-[#EFEFEF] min-h-[calc(100vh-80px)] py-6 md:py-10 px-4 font-sans">
+	<div class="bg-[#EFEFEF] min-h-[calc(100vh-80px)] py-2 md:py-10 px-4 font-sans mb-6">
 		<div v-if="cartStore.items.length === 0" class="max-w-4xl mx-auto text-center py-20 bg-white rounded-3xl shadow-sm">
 			<p class="text-txt-muted font-medium mb-6"> {{ t('cart.empty') }} </p>
 			<NuxtLink :to="localePath('menu')" class="bg-primary text-white font-bold px-8 py-3 rounded-full hover:bg-pink-500 transition-colors">
@@ -148,9 +148,12 @@ const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + de
 						<span>{{ formattedTotal }}</span>
 					</div>
 				</div>
-				<button class="w-full bg-accent text-white capitalize font-bold text-lg py-4 rounded-full shadow-lg hover:bg-pink-500 transition-transform active:scale-95">
-					{{ t('cart.btn') }}
-				</button>
+				<NuxtLink 
+				:to="localePath('checkout')"
+				class="block text-center w-full bg-accent text-white capitalize font-bold text-lg py-4 rounded-full shadow-lg hover:bg-pink-500 transition-transform active:scale-95"
+				>
+				{{ t('cart.btn') }}
+				</NuxtLink>
 			</div>
 		</div>
 	</div>
