@@ -6,7 +6,7 @@ const client = useStrapiClient()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
-const { data: userData, pending, error } = await useAsyncData<any>(
+const { data: userData, pending, error, refresh } = await useAsyncData<any>(
   'user-addresses',
   () => client('/users/me', {
     query: {
@@ -19,6 +19,32 @@ const addresses = computed(() => {
   const allAddresses = userData.value?.addresses || []
   return allAddresses.filter((addr: any) => addr.publishedAt !== null)
 })
+
+const deleteAddress = async (documentId: string) => {
+  const isConfirmed = confirm(
+    locale.value === 'hu' 
+      ? 'Biztosan törölni szeretnéd ezt a címet?' 
+      : 'Are you sure you want to delete this address?'
+  )
+  
+  if (!isConfirmed) return
+
+  try {
+    await client(`/addresses/${documentId}`, {
+      method: 'DELETE'
+    })
+    
+    await refresh()
+    
+  } catch (err) {
+    console.error('Failed to delete address:', err)
+    alert(
+      locale.value === 'hu' 
+        ? 'Hiba történt a törlés során.' 
+        : 'An error occurred while deleting the address.'
+    )
+  }
+}
 </script>
 
 <template>
@@ -69,7 +95,10 @@ const addresses = computed(() => {
           <button class="text-sm font-medium text-accent hover:underline">
             {{ locale === 'hu' ? 'Szerkesztés' : 'Edit' }}
           </button>
-          <button class="text-sm font-medium text-red-500 hover:underline">
+          <button 
+            @click="deleteAddress(address.documentId)"
+            class="text-sm font-medium text-red-500 hover:underline"
+          >
             {{ locale === 'hu' ? 'Törlés' : 'Delete' }}
           </button>
         </div>

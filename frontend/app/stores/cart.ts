@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export interface CartItem {
   id: number;
   name: string;
+  name_accent: string;
   price: number;
   quantity: number;
   image?: string;
@@ -38,6 +39,7 @@ export const useCartStore = defineStore('cart', () => {
       items.value.push({
         id: product.id,
         name: product.name,
+        name_accent: product.name_accent,
         price: actualPrice,
         quantity: 1,
         image: product.images?.[0]?.url,

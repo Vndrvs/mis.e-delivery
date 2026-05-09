@@ -3,18 +3,18 @@ import { computed } from 'vue';
 const { locale, t } = useI18n();
 
 const props = defineProps<{
-  title: string;
-  titleAccent: string;
-  paragraph: string;
-  originalPrice: number;
-  salePrice: number;
-  validUntil: string;
-  image?: string;
-}>();
+  name: string
+  name_accent?: string
+  description?: string
+  price: number
+  sale_price?: number | null
+  valid_until?: string
+  images?: Array<{ url: string }>
+}>()
 
 const config = useRuntimeConfig();
 
-const formatPrice = (value: number | null) => {
+const formatPrice = (value: number | null | undefined) => {
   const val = value || 0;
 
   if (locale.value === 'en') {
@@ -33,10 +33,13 @@ const formatPrice = (value: number | null) => {
 };
 
 const fullImageUrl = computed(() => {
-	if (!props.image) return '';
-	return props.image.startsWith('/') 
-	? `${config.public.strapiUrl}${props.image}` 
-	: props.image;
+  const image = props.images?.[0]?.url;
+
+  if (!image) return '';
+
+  return image.startsWith('/')
+    ? `${config.public.strapiUrl}${image}`
+    : image;
 });
 
 const emit = defineEmits(['add'])
@@ -48,16 +51,19 @@ const emit = defineEmits(['add'])
         <div class="relative flex flex-col h-full gap-0">
             <div class="px-4 pt-4">
                 <h3 class="text-xl font-black text-txt-sec leading-tight capitalize">
-                    {{ title }}
-                    <span class="text-white ml-1"> {{ titleAccent }} </span>
+                    {{ name }}
+                    <span class="text-white ml-1"> {{ name_accent }} </span>
                 </h3>
+				<p class="txt-white dark:txt-black">
+					{{ description }}
+				</p>
             </div>
             <div class="w-full flex px-2">
                 <div class="w-full h-[200px] shrink-0 relative px-2">
                     <img
                         v-show="fullImageUrl"
                         :src="fullImageUrl"
-                        :alt="title"
+                        :alt="name"
                         class="absolute inset-0 w-full h-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]"
                     />
                 </div>
@@ -65,10 +71,10 @@ const emit = defineEmits(['add'])
             <div class="px-5 pb-5 flex justify-between items-end">
                 <div class="bg-white dark:bg-black text-page px-4 py-2 rounded-full border border-str-light shadow-sm flex flex-col items-start leading-none">
                     <span class="text-[10px] text-txt-muted line-through mb-1">
-                    {{ formatPrice(originalPrice) }}
+                    {{ formatPrice(price) }}
                     </span>
                     <span class="text-sm font-bold">
-                    {{ formatPrice(salePrice) }}
+                    {{ formatPrice(sale_price) }}
                     </span>
                 </div>
                 <button 

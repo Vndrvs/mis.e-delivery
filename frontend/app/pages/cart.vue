@@ -85,7 +85,7 @@ const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + de
 							</button>
 						
 							<h3 class="font-bold text-[1.1rem] md:text-xl text-gray-900 leading-tight capitalize">
-								{{ item.name }} 
+								{{ item.name }} <span class="text-primary"> {{ item.name_accent }} </span>
 								<span class="text-primary">{{ getDisplayCategory(item.category) }}</span>
 							</h3>
 						

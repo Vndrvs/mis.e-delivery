@@ -19,6 +19,7 @@ interface StrapiProduct {
   id: number;
   name: string;
   product_type: string;
+  is_promotion?: boolean;
   is_maki: boolean;
   piece_count: number;
   on_sale: boolean;
@@ -60,6 +61,8 @@ const filteredProducts = computed(() => {
   if (!products.value?.data) return [];
 
   let result = [...products.value.data];
+
+  result = result.filter(p => !p.is_promotion);
 
   if (makiOnly.value) {
     result = result.filter(p => p.is_maki === true);

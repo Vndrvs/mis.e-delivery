@@ -97,10 +97,11 @@
     "error": "Failed to save the address. Please try again."
   },
   "home": {
+    "delivering": "delivering to",
     "promotionsTitle": "promotions",
     "voucherTitle": "vouchers!",
     "voucherParagraph": "if you sign up for our news about bites on sale, or important changes to our deliveries, we honour it with a 20% coupon for your next order.",
-    "voucherSignupParagraph:": "if you register a profile before ordering, we honour it with a 20% coupon for your first sushi order.",
+    "voucherSignupParagraph": "if you register a profile before ordering, we honour it with a 20% coupon for your first sushi order.",
     "voucherSignupButton": "sign me up",
     "voucherRegisterButton": "register me",
     "sushiTitle": "sushi",

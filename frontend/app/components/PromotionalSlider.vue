@@ -12,32 +12,59 @@ const strapiLocale = computed(() => locale.value === 'hu' ? 'hu-HU' : 'en');
 const cartStore = useCartStore();
 const config = useRuntimeConfig();
 
-interface StrapiPromotion {
+interface StrapiProduct {
   id: number;
-  title: string;
-  title_accent: string;
-  paragraph: string;
-  original_price: number;
-  sale_price: number;
-  valid_until: string;
-  image?: { url: string }; 
+  name: string;
+  name_accent: string;
+  product_type: string;
+  description: string;
+  is_promotion?: boolean;
+  valid_until?: string;
+  is_maki: boolean;
+  piece_count: number;
+  on_sale: boolean;
+  price: number;
+  sale_price?: number | null;
+  createdAt: string;
+  images?: Array<{ url: string }>;
 }
 
-const { data: promotions, pending } = await useAsyncData(
-  'promotions-list',
-  async () => {
-    const response = await find<StrapiPromotion>('promotions', { 
-      populate: '*',
-      locale: strapiLocale.value,
-      sort: 'valid_until:asc'
-    });
-    
-    return (response as any).data as StrapiPromotion[];
-  },
-  { 
-    watch: [strapiLocale] 
+const { data: products, pending } = await useAsyncData(
+  'promotion-products',
+  () => find('products', {
+    populate: '*',
+    locale: strapiLocale.value,
+    filters: {
+      is_promotion: {
+        $eq: true
+      }
+    } as any
+  }) as unknown as Promise<{ data: StrapiProduct[] }>,
+  {
+    watch: [strapiLocale]
   }
-);
+)
+
+const richTextToPlain = (blocks: any): string => {
+  if (!Array.isArray(blocks)) return ''
+
+  return blocks
+    .flatMap(block => block.children || [])
+    .map(child => child.text || '')
+    .join(' ')
+}
+
+const normalizedProducts = computed(() =>
+
+  (products.value?.data || []).map((product: any) => ({
+
+    ...product,
+
+    description: richTextToPlain(product.description)
+
+  }))
+
+)
 
 const options: Partial<EmblaOptionsType> = { loop: true, align: "start" };
 
@@ -86,22 +113,22 @@ onUnmounted(() => {
     <div class="text-center bg-cover">
         <div class="embla-testimonial-wrapper">
             <div ref="emblaRef" class="overflow-hidden">
-                <div class="flex" v-if="!pending">  
+                <div class="flex">  
                     <div 
                         class="flex-none snap-start mr-[1.2rem] md:mr-[3rem] w-[65%] md:w-[400px]"
-                        v-for="promotion in promotions"
-                        :key="promotion.id"
+                        v-for="product in normalizedProducts"
+                        :key="product.id"
                     >
                         <PromotionCard
                             class="flex flex-grow-0 h-full"
-                            :title="promotion.title"
-                            :title-accent="promotion.title_accent"
-                            :paragraph="promotion.paragraph"
-                            :original-price="promotion.original_price"
-                            :sale-price="promotion.sale_price"
-                            :valid-until="promotion.valid_until"
-                            :image="promotion.image?.url"
-                            @add="cartStore.addToCart(promotion)"
+                            :name="product.name"
+                            :name_accent="product.name_accent"
+                            :description="product.description"
+                            :price="product.price"
+                            :sale_price="product.sale_price"
+                            :valid_until="product.valid_until"
+                            :images="product.images"
+                            @add="cartStore.addToCart(product)"
                         />
                     </div>
                 </div>
@@ -110,7 +137,7 @@ onUnmounted(() => {
                 <button
                     v-for="(snap, index) in scrollSnaps"
                     :key="index"
-                    class="rounded-[2px] w-12 h-[0.4rem] border-0 p-0 mx-2 cursor-pointer transition-colors duration-200 ease-in-out bg-str-light"
+                    class="rounded-[2px] w-12 h-[0.4rem] p-0 mx-2 cursor-pointer transition-colors duration-200 ease-in-out bg-str-light border border-txt-muted"
                     :class="[
                         index === selectedIndex 
                             ? 'bg-txt-muted' 
