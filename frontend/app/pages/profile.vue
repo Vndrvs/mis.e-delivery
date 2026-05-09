@@ -90,37 +90,37 @@ const isProfileRoot = computed(() => {
 </script>
 
 <template>
-  <div class="profile-page min-h-[calc(100vh-80px)] bg-page py-6 lg:py-10 px-4 font-sans">
+  <div class="profile-page min-h-[calc(100vh-100px)] bg-page py-6 lg:py-10 font-sans">
     <div 
       v-if="hasZeroAddresses" 
-      class="max-w-7xl mx-auto mb-6 bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+      class="text-center items-center md:text-left w-full mx-auto bg-primary mb-6 border-l-4 border-accent p-4 rounded-r-xl flex flex-col sm:flex-row justify-between md:items-start sm:items-center gap-4"
     >
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1">
         <span class="text-accent text-2xl">📍</span>
-        <p class="text-txt-main font-medium">
-          {{ locale === 'hu' ? 'Még nem adtál meg szállítási címet. Adj hozzá egyet a gyorsabb rendeléshez!' : 'You haven\'t added a delivery address yet. Add one for faster checkout!' }}
+        <p class="text-txt-main font-medium min-w-80">
+          {{ t('profile.noAddressParagraph') }}
         </p>
       </div>
       <NuxtLink 
         :to="localePath('/profile/addresses')" 
         class="shrink-0 bg-accent text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-pink-500 transition-colors shadow-sm"
       >
-        {{ locale === 'hu' ? 'Cím hozzáadása' : 'Add Address' }}
+        {{ t('profile.addAddressBtn') }}
       </NuxtLink>
     </div>
     
     
-    <div class=" mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12">
-      
+    <div class="mx-auto flex flex-col lg:flex-row gap-8 lg:gap-0 rounded-3xl border border-white">
       <MobileProfile 
         v-if="isProfileRoot"
         class="lg:hidden"
+        :class="{ 'mb-12': hasZeroAddresses }"
         :display-name="displayName"
         :nav-items="profileNavItems"
         @logout="handleLogout"
       />
 
-      <aside class="w-full lg:w-64 shrink-0 hidden lg:flex flex-col gap-8">
+      <aside class="w-full hidden lg:w-64 bg-primary bg-opacity-20 shrink-0 lg:flex flex-col gap-8 py-6 min-w-[300px]">
         <MobileProfile 
           :display-name="displayName"
           :nav-items="profileNavItems"
@@ -129,7 +129,7 @@ const isProfileRoot = computed(() => {
       </aside>
 
       <main 
-        class="w-full flex-grow rounded-3xl lg:border-4 lg:border-txt-main"
+        class="w-full flex-grow rounded-3xl"
         :class="{ 'hidden lg:block': isProfileRoot }"
       >
         <button 
@@ -137,7 +137,7 @@ const isProfileRoot = computed(() => {
           @click="goBack"
           class="lg:hidden flex items-center gap-2 mb-6 text-txt-sec font-medium transition-transform active:scale-95"
         >
-          <span class="text-xl">←</span> {{ locale === 'hu' ? 'Vissza' : 'Back' }}
+          <span class="text-xl">←</span> {{ t('profile.back') }}
         </button>
 
         <NuxtPage 

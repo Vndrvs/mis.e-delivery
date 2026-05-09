@@ -4,7 +4,7 @@ defineProps<{
   navItems: any[];
 }>();
 
-const { locale } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 const emit = defineEmits(['logout', 'navigate']);
@@ -21,8 +21,8 @@ const handleAction = (item: any) => {
 <template>
   <div class="flex flex-col gap-8">
     <div>
-      <h2 class="text-xl font-bold text-txt-sec text-wrap">
-        {{ locale === 'hu' ? 'Üdvözlünk' : 'Welcome' }}, 
+      <h2 class="text-xl font-bold text-txt-sec text-wrap first-letter:capitalize">
+        {{ t('profile.welcome') }}
         <span class="text-primary font-medium">{{ displayName }}</span>
       </h2>
     </div>
@@ -32,9 +32,17 @@ const handleAction = (item: any) => {
         v-for="item in navItems"
         :key="item.to"
         @click="handleAction(item)"
-        class="bg-white text-left px-5 py-4 rounded-2xl shadow-sm transition-all capitalize active:scale-[0.98]"
+        class="flex flex-row items-center lg:border border-transparent lg:rounded-none border-t-white gap-3 bg-white lg:bg-transparent text-left px-4 lg:px-0 py-3 rounded-3xl shadow-sm lg:shadow-none transition-all capitalize active:scale-[0.98]"
         :class="item.to.includes('logout') ? 'text-red-500 font-bold' : 'text-txt-sec font-medium'"
       >
+        <div class="w-auto h-11 border border-txt-mute lg:border-none rounded-full text-nowrap">
+          <img 
+            v-if="item.icon" 
+            :src="item.icon" 
+            class="w-11 h-11 icon-brand p-2 invert-100" 
+            :alt="item.name" 
+          />
+        </div>
         {{ item.name }}
       </button>
     </nav>

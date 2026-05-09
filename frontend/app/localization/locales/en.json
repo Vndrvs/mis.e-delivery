@@ -75,13 +75,20 @@
     "terms": "Terms of Service"
   },
   "profile": {
+    "back": "back",
+    "welcome": "welcome",
     "contact": "contact details",
     "history": "my order history",
     "payments": "payment methods",
     "addresses": "saved addresses",
     "settings": "settings",
     "support": "contact support",
-    "logout": "logout"
+    "logout": "logout",
+    "fullName": "full name",
+    "emailTitle": "email address",
+    "contactBtn": "save",
+    "noAddressParagraph": "You haven't added a delivery address yet. Try adding for faster orders!",
+    "addAddressBtn": "Add Address"
   },
   "address": {
     "addTitle": "Add New Address",

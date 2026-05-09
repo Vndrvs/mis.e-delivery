@@ -112,7 +112,7 @@ onUnmounted(() => {
 <template>
     <div class="text-center bg-cover">
         <div class="embla-testimonial-wrapper">
-            <div ref="emblaRef" class="overflow-hidden">
+            <div ref="emblaRef" class="overflow-visible">
                 <div class="flex">  
                     <div 
                         class="flex-none snap-start mr-[1.2rem] md:mr-[3rem] w-[65%] md:w-[400px]"

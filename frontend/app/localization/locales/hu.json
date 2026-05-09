@@ -75,13 +75,20 @@
     "default_register": "Sikertelen regisztráció. Kérjük, próbálja újra."
   },
   "profile": {
+    "back": "vissza",
+    "welcome": "üdvözlünk",
     "contact": "kapcsolati adatok",
     "history": "leadott rendeléseim",
     "payments": "fizetési módok",
     "addresses": "mentett címek",
     "settings": "beállítások",
     "support": "ügyfélszolgálat",
-    "logout": "kijelentkezés"
+    "logout": "kijelentkezés",
+    "fullName": "teljes név",
+    "emailTitle": "email cím",
+    "contactBtn": "mentés",
+    "noAddressParagraph": "Még nem adtál meg szállítási címet. Adj hozzá egyet a gyorsabb rendeléshez!",
+    "addAddressBtn": "Cím hozzáadása"
   },
   "address": {
     "addTitle": "Új Cím Hozzáadása",
