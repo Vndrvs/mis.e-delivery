@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { useCartStore } from '~/stores/cart'
+import { watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const cartStore = useCartStore()
 const user = useStrapiUser()
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
-
-watch(locale, (newLocale, oldLocale) => {
-  if (newLocale !== oldLocale && cartStore.items.length > 0) {
-    cartStore.clearCart()
-  }
-})
 
 const deliveryFee = computed(() => {
   return locale.value === 'en' ? 12.50 : 3500;
@@ -52,13 +48,19 @@ const formatPrice = (value: number | null) => {
   }).format(val);
 };
 
+watch(locale, async (newLocale, oldLocale) => {
+  if (newLocale !== oldLocale && cartStore.items.length > 0) {
+    await cartStore.translateCart(newLocale)
+  }
+})
+
 const formattedSubtotal = computed(() => formatPrice(cartStore.cartTotalAmount))
 const formattedDelivery = computed(() => formatPrice(deliveryFee.value))
 const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + deliveryFee.value))
 </script>
 
 <template>
-	<div class="bg-[#EFEFEF] min-h-[calc(100vh-80px)] py-2 md:py-10 px-4 font-sans mb-6">
+	<div class="bg-[#EFEFEF] min-h-[calc(100vh-80px)] py-2 px-4 font-sans pb-24 lg:pb-0 lg:pt-10">
 		<div v-if="cartStore.items.length === 0" class="max-w-4xl mx-auto text-center py-20 bg-white rounded-3xl shadow-sm">
 			<p class="text-txt-muted font-medium mb-6"> {{ t('cart.empty') }} </p>
 			<NuxtLink :to="localePath('menu')" class="bg-primary text-white font-bold px-8 py-3 rounded-full hover:bg-pink-500 transition-colors">

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 export interface CartItem {
   id: number;
+  documentId: string;
   name: string;
   name_accent: string;
   price: number;
@@ -31,13 +32,14 @@ export const useCartStore = defineStore('cart', () => {
       ? product.sale_price 
       : product.price;
 
-    const existingItem = items.value.find(item => item.id === product.id)
+    const existingItem = items.value.find(item => item.documentId === product.documentId)
 
     if (existingItem) {
       existingItem.quantity++
     } else {
       items.value.push({
         id: product.id,
+        documentId: product.documentId,
         name: product.name,
         name_accent: product.name_accent,
         price: actualPrice,
@@ -69,6 +71,42 @@ export const useCartStore = defineStore('cart', () => {
     items.value = []
   }
 
+  async function translateCart(newLocale: string) {
+    if (items.value.length === 0) return;
+    
+    const client = useStrapiClient();
+
+    try {
+      const documentIds = items.value.map(item => item.documentId);
+      
+      const response = await client<any>('/products', {
+        query: {
+          locale: newLocale,
+          'filters[documentId][$in]': documentIds
+        }
+      });
+
+      response.data.forEach((translatedProduct: any) => {
+        const cartItem = items.value.find(item => item.documentId === translatedProduct.documentId);
+        if (cartItem) {
+          cartItem.id = translatedProduct.id;
+          cartItem.name = translatedProduct.name;
+          cartItem.name_accent = translatedProduct.name_accent;
+          
+          const actualPrice = translatedProduct.on_sale && translatedProduct.sale_price 
+            ? translatedProduct.sale_price 
+            : translatedProduct.price;
+            
+          cartItem.price = actualPrice;
+        }
+      });
+
+      items.value = [...items.value];
+    } catch (error) {
+      console.error('Failed to translate cart:', error);
+    }
+  }
+
   return {
     items,
     cartTotalAmount,
@@ -76,6 +114,7 @@ export const useCartStore = defineStore('cart', () => {
     addToCart,
     removeFromCart,
     updateQuantity,
-    clearCart
+    clearCart,
+    translateCart
   }
 })

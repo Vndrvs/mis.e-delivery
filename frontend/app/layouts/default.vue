@@ -1,12 +1,28 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCartStore } from '~/stores/cart' // Make sure the path matches your structure
+import { useCartStore } from '~/stores/cart'
 
+import { onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 const route = useRoute()
 const cartStore = useCartStore()
 const localePath = useLocalePath()
 
+
+watch(locale, async (newLocale, oldLocale) => {
+  if (newLocale !== oldLocale && cartStore.items.length > 0) {
+    await cartStore.translateCart(newLocale)
+  }
+})
+
+onMounted(async () => {
+  if (cartStore.items.length > 0) {
+    await cartStore.translateCart(locale.value)
+  }
+})
 
 const isCartPage = computed(() => {
   return String(route.name || '').startsWith('cart')
