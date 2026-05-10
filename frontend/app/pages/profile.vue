@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getNavigation } from '~/utils/useNavigation'
 import { watch, computed, ref, onMounted, reactive } from 'vue'
+import mapPinIcon from '~/assets/img/profile/location-icon.svg';
 
 const user = useStrapiUser()
 const { logout } = useStrapiAuth()
@@ -90,19 +91,22 @@ const isProfileRoot = computed(() => {
 </script>
 
 <template>
-  <div class="profile-page min-h-[calc(100vh-100px)] bg-page py-6 lg:py-10 font-sans">
+  <div class="profile-page min-h-[calc(100vh-100px)] bg-page pb-8 lg:pb-10 lg:pt-4 font-sans">
     <div 
       v-if="hasZeroAddresses" 
-      class="text-center items-center md:text-left w-full mx-auto bg-primary mb-6 border-l-4 border-accent p-4 rounded-r-xl flex flex-col sm:flex-row justify-between md:items-start sm:items-center gap-4"
+      class="text-center items-center md:text-left w-full mx-auto bg-primary mb-4 border-l-4 border-accent p-4 rounded-r-xl flex flex-col sm:flex-row justify-between md:items-start sm:items-center gap-4"
     >
       <div class="flex items-center gap-1">
-        <span class="text-accent text-2xl">📍</span>
+        <img  
+            :src="mapPinIcon"
+            class="lg:ml-4 w-11 h-11 icon-brand p-2 invert"
+          />
         <p class="text-txt-main font-medium min-w-80">
           {{ t('profile.noAddressParagraph') }}
         </p>
       </div>
       <NuxtLink 
-        :to="localePath('/profile/addresses')" 
+        :to="localePath({ name: 'profile-addresses' })"
         class="shrink-0 bg-accent text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-pink-500 transition-colors shadow-sm"
       >
         {{ t('profile.addAddressBtn') }}
@@ -110,7 +114,7 @@ const isProfileRoot = computed(() => {
     </div>
     
     
-    <div class="mx-auto flex flex-col lg:flex-row gap-8 lg:gap-0 overflow-hidden rounded-3xl lg:border-4 border-primary border-opacity-20">
+    <div class="mx-auto flex flex-col lg:flex-row gap-8 lg:gap-0 lg:overflow-hidden rounded-3xl lg:border-l-0 lg:border-4 border-primary border-opacity-20">
       <MobileProfile 
         v-if="isProfileRoot"
         class="lg:hidden"

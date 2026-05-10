@@ -32,7 +32,7 @@ const handleAction = (item: any) => {
         v-for="item in navItems"
         :key="item.to"
         @click="handleAction(item)"
-        class="flex flex-row items-center lg:border border-transparent lg:rounded-none border-t-white gap-3 bg-white lg:bg-transparent text-left px-4 lg:px-0 py-3 rounded-3xl shadow-sm lg:shadow-none transition-all capitalize active:scale-[0.98]"
+        class="flex flex-row items-center lg:border border-transparent lg:rounded-none gap-3 bg-white lg:bg-transparent text-left px-4 lg:px-0 py-3 rounded-3xl shadow-sm lg:shadow-none transition-all capitalize active:scale-[0.98]"
         :class="item.to.includes('logout') ? 'text-red-500 font-bold' : 'text-txt-sec font-medium'"
       >
         <div class="w-auto h-11 border border-txt-mute lg:border-none rounded-full text-nowrap">

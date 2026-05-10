@@ -36,6 +36,11 @@
       "category": "Category"
     }
   },
+  "product": {
+    "cartBtn": "Add to Cart",
+    "notFound": "product not found",
+    "back": "Back to Menu"
+  },
   "cart": {
     "empty": "your cart is empty",
     "back-btn": "back to menu",
@@ -44,7 +49,9 @@
     "total": "total",
     "promotion": "promotion code",
     "promo-btn": "apply",
-    "btn": "order"
+    "btn": "order",
+    "viewProduct": "View Product",
+    "remove": "remove"
   },
   "checkout": {
     "title": "Checkout",
@@ -66,7 +73,20 @@
     "totalItems": "Total Items",
     "total": "Total",
     "placeOrder": "Place Order",
-    "pcs": "pcs"
+    "pcs": "pcs",
+    "errorMsg": "Error while placing order.",
+    "successStatus": "Order placed successfully! Thank you for your purchase.",
+    "successMessage": "We have received your order and will begin processing it shortly.",
+    "backToMenu": "Back to Menu"
+  },
+  "orders": {
+    "prompt": "Login Required",
+    "warn": "you need to be logged in to view your order history and track your deliveries",
+    "redirect": "Go to Login",
+    "load": "loading orders",
+    "noOrders": "you haven't placed any orders yet",
+    "status": "status",
+    "btn": "order again"
   },
   "errors": {
     "email_taken": "This email address is already taken.",

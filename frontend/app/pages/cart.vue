@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useCartStore } from '~/stores/cart'
-import { watch } from 'vue'
+import { watch, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+// diplaying items in cart
 const cartStore = useCartStore()
-const user = useStrapiUser()
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const config = useRuntimeConfig()
@@ -57,6 +57,28 @@ watch(locale, async (newLocale, oldLocale) => {
 const formattedSubtotal = computed(() => formatPrice(cartStore.cartTotalAmount))
 const formattedDelivery = computed(() => formatPrice(deliveryFee.value))
 const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + deliveryFee.value))
+
+// dropdown for cart items
+
+const activeDropdown = ref<number | null>(null)
+
+const toggleDropdown = (id: number) => {
+  activeDropdown.value = activeDropdown.value === id ? null : id
+}
+
+const closeDropdown = (e: MouseEvent) => {
+  if (!(e.target as Element).closest('.dropdown-trigger')) {
+    activeDropdown.value = null
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('click', closeDropdown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('click', closeDropdown)
+})
 </script>
 
 <template>
@@ -82,9 +104,34 @@ const formattedTotal = computed(() => formatPrice(cartStore.cartTotalAmount + de
 
 					<div class="flex-grow flex flex-col justify-between min-h-[5.5rem]">
 						<div>
-							<button @click="cartStore.removeFromCart(item.id)" class="absolute top-5 right-5 text-gray-800 tracking-[0.2em] font-black leading-none text-xl outline-none hover:text-red-500 transition-colors">
-								...
-							</button>
+							<div class="absolute top-2 right-2 md:top-0 md:right-0 dropdown-trigger z-20">
+								<button 
+									@click.stop="toggleDropdown(item.id)" 
+									class="text-gray-800 tracking-[0.2em] font-black leading-none text-xl outline-none hover:text-primary transition-colors p-2"
+								>
+									...
+								</button>
+
+                            <div 
+                                v-if="activeDropdown === item.id" 
+                                class="absolute top-full right-0 mt-1 w-40 bg-white border border-gray-100 shadow-xl rounded-2xl overflow-hidden flex flex-col animate-in fade-in slide-in-from-top-2 z-50"
+                            >
+                                <NuxtLink 
+                                    :to="localePath(`/product/${item.documentId || item.id}`)" 
+                                    @click="activeDropdown = null"
+                                    class="block w-full px-4 py-3 text-sm text-txt-sec hover:bg-pill text-left font-medium border-b border-str-light transition-colors capitalize cursor-pointer"
+                                >
+                                    {{ t('cart.viewProduct') || 'View Product' }}
+                                </NuxtLink>
+                                
+                                <button 
+                                    @click="cartStore.removeFromCart(item.id); activeDropdown = null" 
+                                    class="px-4 py-3 text-sm text-red-500 hover:bg-red-50 text-left font-bold transition-colors capitalize"
+                                >
+                                    {{ t('cart.remove') || 'Remove' }}
+                                </button>
+                            </div>
+                        </div>
 						
 							<h3 class="font-bold text-[1.1rem] md:text-xl text-gray-900 leading-tight capitalize">
 								{{ item.name }} <span class="text-primary"> {{ item.name_accent }} </span>

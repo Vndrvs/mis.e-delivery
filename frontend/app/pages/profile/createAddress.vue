@@ -59,7 +59,6 @@ async function submitAddress() {
 
     console.log('RESPONSE STATUS:', error?.response?.status)
     console.log('RESPONSE HEADERS:', error?.response?.headers)
-
     console.log('RESPONSE BODY (_data):', error?.response?._data)
 
     errorMessage.value = t('address.error')
