@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import brandLogo from "@/assets/img/brand-outline.svg";
-import userIcon from "@/assets/img/user-icon.svg";
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-
+import { useRoute } from 'vue-router'; //
 import flagEn from '~/assets/img/flag-en.svg';
 import flagHu from '~/assets/img/flag-hu.svg';
+
+const route = useRoute();
+
+const isStartupPage = computed(() => {
+  return String(route.name || '').includes('startup')
+});
 
 type Locale = 'en' | 'hu';
 
@@ -116,7 +121,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
             </div>
         </header>
 
-        <NavMobileBottomNav />
+        <NavMobileBottomNav v-if="!isStartupPage"/>
     </div>
 </template>
 
