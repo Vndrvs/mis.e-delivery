@@ -2,15 +2,20 @@
 import { getNavigation } from '~/utils/useNavigation';
 const { t } = useI18n();
 const localePath = useLocalePath(); 
+const route = useRoute();
 
 const navItems = computed(() => getNavigation('home', t));
 
 const isCart = (to: string) => to === 'cart' || to === '/cart';
+
+const isCartActive = (to: string) => {
+  return route.path.includes('cart') || route.path.includes('kosar');
+};
 </script>
 
 <template>
   <div class="fixed bottom-0 left-0 w-full z-50 lg:hidden drop-shadow-[0_-4px_8px_rgba(0,0,0,0.08)]">
-    <nav class="bg-primary h-[72px] flex justify-between items-center px-4 relative">
+    <nav class="bg-primary h-[72px] flex justify-between items-center px-3 md:px-10 relative">
       
       <template v-for="item in navItems" :key="item.to">
         
@@ -19,7 +24,8 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
           
           <NuxtLink 
             :to="localePath(item.to)" 
-            class="absolute -top-[18px] w-[70px] h-[70px] bg-badge rounded-full flex flex-col items-center justify-center shadow-sm transition-transform active:scale-95"
+            class="absolute -top-[18px] w-[70px] h-[70px] bg-badge rounded-full flex flex-col items-center justify-center shadow-sm transition-all active:scale-95"
+            :class="{ 'nav-cart--active': isCartActive(item.to) }"
           >
             <img 
               v-if="item.icon" 
@@ -40,10 +46,10 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
           <img 
             v-if="item.icon" 
             :src="item.icon" 
-            class="w-6 h-6 mb-1 icon-white" 
+            class="w-6 h-6 mb-1 icon-white transition-all" 
             :alt="item.name" 
           />
-          <span class="text-[11px] font-medium tracking-wide">{{ item.name }}</span>
+          <span class="text-[11px] font-medium tracking-wide transition-all">{{ item.name }}</span>
         </NuxtLink>
 
       </template>
@@ -53,18 +59,35 @@ const isCart = (to: string) => to === 'cart' || to === '/cart';
 
 <style scoped lang="postcss">
 .nav-item {
-	@apply flex flex-col items-center justify-center w-[60px] text-txt-main opacity-80 transition-all;
+  @apply flex flex-col items-center justify-center w-[60px] text-txt-main opacity-70 transition-all;
 }
 
 .nav-item--active {
-	@apply opacity-100 font-bold;
+  @apply opacity-100;
+}
+
+.nav-item--active span {
+  @apply font-bold scale-110;
+}
+
+.nav-item--active img {
+  filter: brightness(0) invert(1) drop-shadow(0.5px 0 0 white) drop-shadow(-0.5px 0 0 white);
+}
+
+.nav-cart--active {
+  @apply scale-110 shadow-lg;
+}
+
+.nav-cart--active img {
+  filter: brightness(0) saturate(100%) invert(41%) sepia(92%) saturate(710%) hue-rotate(287deg) brightness(103%) contrast(97%) 
+          drop-shadow(0.5px 0 0 currentColor);
 }
 
 .icon-white {
-	filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .icon-brand {
-	filter: brightness(0) saturate(100%) invert(41%) sepia(92%) saturate(710%) hue-rotate(287deg) brightness(103%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(41%) sepia(92%) saturate(710%) hue-rotate(287deg) brightness(103%) contrast(97%);
 }
 </style>

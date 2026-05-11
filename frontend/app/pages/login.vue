@@ -34,9 +34,9 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="login-page min-h-[100dvh] w-full bg-white flex flex-col font-sans isolate" style="background-color: white !important;">
+  <div class="login-page w-full flex flex-col font-sans isolate pb-16">
     
-    <header class="login-page__header w-full bg-white py-4 flex items-center justify-center shrink-0 z-20" style="background-color: white !important;">
+    <header class="login-page__header w-full bg-white py-4 flex items-center justify-center shrink-0 z-20"">
       <div class="flex items-center gap-2">
 		<div class="flex w-12 h-12 items-center justify-center rounded-full bg-primary">
 			<img 
@@ -50,7 +50,7 @@ async function onSubmit() {
       </div>
     </header>
 
-    <div class="login-page__content flex-grow w-full bg-white px-6 py-10 max-w-lg mx-auto flex flex-col z-10" style="background-color: white !important;">
+    <div class="login-page__content flex-grow w-full md:px-6 py-10 max-w-lg mx-auto flex flex-col z-10">
       
       <h1 class="text-3xl font-bold text-txt-sec mb-8 capitalize"> {{ $t('login.title') }} </h1>
 
@@ -64,7 +64,7 @@ async function onSubmit() {
             v-model="form.email"
             type="email" 
             :placeholder="$t('login.placeholder')"
-            class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+            class="w-full px-4 py-3 rounded-xl border border-str-light bg-white focus:border-primary outline-none transition-all"
 			required
           />
         </div>
@@ -75,7 +75,7 @@ async function onSubmit() {
             v-model="form.password"
             type="password" 
             placeholder="••••••••"
-            class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+            class="w-full px-4 py-3 rounded-xl border border-str-light bg-white focus:border-primary outline-none transition-all"
 			required
           />
         </div>

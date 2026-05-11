@@ -1,5 +1,15 @@
+<script setup lang="ts">
+const localePath = useLocalePath();
+
+const setGuestMode = () => {
+  const guestMode = useCookie('guest_mode', { maxAge: 60 * 60 * 24 })
+  guestMode.value = 'true' // Set the cookie
+  navigateTo(localePath('index')) // Move to home page
+}
+</script>
+
 <template>
-  <main class="startup-page relative  h-[84dvh] w-full flex flex-col bg-white overflow-hidden">
+  <main class="startup-page relative h-[84dvh] w-full flex flex-col bg-white">
     <div class="startup-page__hero relative flex-grow w-full">
       <img 
         src="~/assets/img/start-background.webp"
@@ -26,13 +36,19 @@
       </header>
 
       <div class="startup-page__actions flex flex-row w-full justify-between">
-        <button class="startup-page__btn startup-page__btn--primary py-2 px-6 rounded-full font-semibold text-lg transition-all bg-primary text-txt-main active:opacity-80">
+        <NuxtLink 
+          :to="localePath('login')"
+          class="startup-page__btn startup-page__btn--primary py-2 px-6 rounded-full font-semibold text-lg transition-all bg-primary text-txt-main active:opacity-80"
+        >
           Login
-        </button>
+      </NuxtLink>
         
-        <button class="startup-page__btn startup-page__btn--secondary py-2 px-6 rounded-full text-nowrap font-semibold text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50">
+        <NuxtLink 
+          @click="setGuestMode"
+          class="startup-page__btn startup-page__btn--secondary py-2 px-6 rounded-full text-nowrap font-semibold text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50"
+        >
           Continue as Guest
-        </button>
+        </NuxtLink>
       </div>
     </div>
     

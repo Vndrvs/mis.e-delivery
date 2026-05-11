@@ -24,7 +24,7 @@ const product = computed(() => productData.value?.data)
 </script>
 
 <template>
-  <div class="min-h-screen bg-page py-10 px-4">
+  <div class="bg-page py-10 px-4">
     
     <div v-if="pending" class="flex justify-center items-center py-20">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>

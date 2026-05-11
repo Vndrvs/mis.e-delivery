@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useCartStore } from '~/stores/cart'
+import mapPinIcon from '~/assets/img/profile/location-icon.svg';
 
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
@@ -131,12 +132,12 @@ const copyOrder = async (order: any) => {
 
 <template>
   <div>
-	<div v-if="!user" class="flex flex-col items-center justify-center py-16 md:py-24 text-center gap-6 px-4">
+	<div v-if="!user" class="flex flex-col items-center justify-center py-16 md:py-24 text-center gap-6 px-4 min-h-[calc(100dvh-160px)]">
       <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-2">
         <img src="~/assets/img/user-icon.svg" class="w-10 h-10 opacity-50" alt="Login Required" />
       </div>
       <h2 class="text-2xl md:text-3xl font-black text-txt-sec"> {{ t('orders.prompt') }} </h2>
-      <p class="text-txt-muted text-lg max-w-md"> {{ t('orders.warn') }} </p>
+      <p class="first-letter:capitalize text-txt-muted text-lg max-w-md"> {{ t('orders.warn') }} </p>
       <NuxtLink 
         :to="localePath('login')" 
         class="mt-4 bg-txt-sec text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-black transition-all shadow-md active:scale-95"
@@ -146,9 +147,7 @@ const copyOrder = async (order: any) => {
     </div>
 
     <div v-if="pending"> {{ t('orders.load') }} </div>
-    
-    <div v-else-if="myOrders.length === 0"> {{ t('orders.noOrders') }} </div>
-    
+        
     <div v-else class="flex flex-col mb-8 gap-4 lg:pt-10">
 		<div v-for="order in myOrders" :key="order.documentId" class="border p-4 rounded-3xl dark:bg-white flex flex-row items-stretch justify-between gap-2 relative shadow-sm">		<div class="order__item-content flex flex-col">
 			<div class="flex flex-row gap-2">

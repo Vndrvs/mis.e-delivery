@@ -58,7 +58,7 @@ const emit = defineEmits(['add'])
 </script>
 
 <template>
-	<div class="bg-black dark:bg-white rounded-2xl border border-str-light overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300 relative min-h-[340px]">
+	<div class="bg-black dark:bg-white rounded-2xl border border-str-light overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300 relative md:min-h-[340px]">
 		<div 
 			v-if="fullImageUrl"
 			class="absolute inset-x-0 bottom-0 h-1/2 z-0 pointer-events-none overflow-hidden"
@@ -73,7 +73,7 @@ const emit = defineEmits(['add'])
 		</div>
 	
 		<div class="relative z-10 flex flex-col h-full flex-grow">
-			<div class="px-4 pt-4 pb-2">
+			<div class="px-3 md:px-5 pt-4 pb-2">
 				<h3 class="text-xl font-black text-txt-sec leading-tight capitalize">
 					{{ title }}
 					<span class="text-primary ml-1"> {{ displayCategory }} </span>
@@ -83,7 +83,7 @@ const emit = defineEmits(['add'])
 				</span>
 			</div>
 			<div class="flex-grow flex items-center justify-center px-2">
-				<div class="w-full h-44 sm:w-52 sm:h-52 relative">
+				<div class="w-full md:h-44 h-28 sm:w-52 sm:h-52 relative">
 					<img
 						v-if="fullImageUrl"
 						:src="fullImageUrl"
@@ -92,12 +92,12 @@ const emit = defineEmits(['add'])
 					/>
 				</div>
 			</div>
-			<div class="p-5 flex justify-between items-end">
-				<div class="bg-white dark:bg-black text-page px-4 py-2 rounded-full border border-str-light shadow-sm flex flex-col items-start leading-none">
+			<div class="py-4 px-3 lg:p-5 flex justify-between items-end">
+				<div class="bg-white dark:bg-black text-page px-3 md:px-4 py-2 rounded-full border border-str-light shadow-sm flex flex-col items-start leading-none">
 					<span v-if="onSale" class="text-[10px] text-txt-muted line-through mb-1">
 					{{ formatPrice(price) }}
 					</span>
-					<span class="text-sm font-bold">
+					<span class="text-xs md:text-sm font-bold">
 					{{ formatPrice(onSale ? salePrice ?? price : price) }}
 					</span>
 				</div>
@@ -106,7 +106,7 @@ const emit = defineEmits(['add'])
 					class="bg-primary hover:scale-105 text-white p-3 rounded-full transition-all active:scale-95 shadow-lg shadow-primary/20"
 					@click="emit('add')"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 					</svg>
 				</button>

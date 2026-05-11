@@ -121,7 +121,7 @@ const handleTypeFilter = (type: 'maki' | 'bowl' | 'vegan', value: boolean) => {
 </script>
 
 <template>
-  <div class="bg-page min-h-screen">
+  <div class="bg-page min-h-screen lg:pt-6 pb-20 lg:pb-10">
     <div class="container mx-auto max-w-7xl">
       
       <MenuControllers 
@@ -140,7 +140,7 @@ const handleTypeFilter = (type: 'maki' | 'bowl' | 'vegan', value: boolean) => {
         @update:veganOnly="handleTypeFilter('vegan', $event)"
       />
 
-      <div v-if="!pending" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-4 md:px-0">
+      <div v-if="!pending" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 md:px-0">
         <ProductCard
           v-for="product in filteredProducts"
           :key="product.id"

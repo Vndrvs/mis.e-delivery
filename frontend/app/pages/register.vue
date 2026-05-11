@@ -46,7 +46,7 @@ async function onRegister() {
 </script>
 
 <template>
-	<div class="register-page min-h-[100dvh] w-full bg-white flex flex-col font-sans isolate">
+	<div class="register-page min-h-[100dvh] w-full flex flex-col font-sans isolate pb-16">
 		<header class="register-page__header w-full bg-white py-4 flex items-center justify-center shrink-0 z-20">
 			<div class="flex items-center gap-2">
 				<div class="flex w-12 h-12 items-center justify-center rounded-full bg-primary">
@@ -60,7 +60,7 @@ async function onRegister() {
 				<h1 class="text-primary text-2xl font-bold">Mis.e</h1>
 			</div>
 		</header>
-		<div class="register-page__content flex-grow w-full bg-white px-6 py-10 max-w-lg mx-auto flex flex-col z-10">
+		<div class="register-page__content flex-grow w-full md:px-6 py-10 max-w-lg mx-auto flex flex-col z-10">
 			<h1 class="capitalize text-3xl font-bold text-txt-sec mb-8">{{ $t('register.title') }}</h1>
 			<form class="flex flex-col gap-6" @submit.prevent="onRegister">
 				<div v-if="error" class="text-red-500 text-sm font-bold bg-red-50 p-3 rounded-lg">
@@ -72,7 +72,7 @@ async function onRegister() {
 						v-model="form.email"
 						type="email" 
 						:placeholder="$t('register.placeholder')"
-						class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+						class="w-full px-4 py-3 rounded-xl bg-white border border-str-light focus:border-primary outline-none transition-all"
 						required
 					/>
 				</div>
@@ -82,7 +82,7 @@ async function onRegister() {
 						v-model="form.password"
 						type="password" 
 						placeholder="••••••••"
-						class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+						class="w-full px-4 py-3 rounded-xl border border-str-light bg-white focus:border-primary outline-none transition-all"
 						required
 					/>
 				</div>	
@@ -92,7 +92,7 @@ async function onRegister() {
 						v-model="form.confirm"
 						type="password" 
 						placeholder="••••••••"
-						class="w-full px-4 py-3 rounded-xl border border-str-light bg-page focus:border-primary outline-none transition-all"
+						class="w-full px-4 py-3 rounded-xl border border-str-light bg-white focus:border-primary outline-none transition-all"
 						required
 					/>
 				</div>
@@ -103,11 +103,11 @@ async function onRegister() {
 			<footer class="mt-8 flex flex-col gap-4 text-center">
 				<p class="text-txt-muted text-sm font-medium">
 				{{ $t('register.label') }}
-				<a href="#" class="text-primary underline font-bold ml-1">{{ $t('register.privacy') }}</a>
+				<a href="#" class="text-primary underline font-bold">{{ $t('register.privacy') }}</a>
 				</p>
 				<p class="text-txt-muted text-sm font-medium">
 				{{ $t('register.label-2') }}
-				<NuxtLink :to="$localePath('register')" class="text-primary underline font-bold ml-1">
+				<NuxtLink :to="$localePath('register')" class="text-primary underline font-bold">
 					{{ $t('register.terms') }}.
 				</NuxtLink>
 				

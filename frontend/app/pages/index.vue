@@ -57,12 +57,10 @@ const subscribeToMarketing = async () => {
     console.error(error)
   }
 }
-
-
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 md:pt-8 md:pb-16">
+  <div class="flex flex-col gap-6 md:pt-8 pb-20 lg:pb-16">
     <div
         v-if="user && firstAddress"
         class="flex flew-row items-center justify-between dark:bg-white rounded-full border border-str-light px-6 py-3"
@@ -83,7 +81,7 @@ const subscribeToMarketing = async () => {
       {{ $t('home.voucherTitle') }}
     </h2>
     <template v-if="isPublicGuest">
-      <p class="text-txt-muted text-sm font-medium">
+      <p class="text-txt-muted text-sm font-medium first-letter:capitalize">
         {{ $t('home.voucherSignupParagraph') }}
       </p>
       <NuxtLink 
