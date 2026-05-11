@@ -9,7 +9,7 @@ const setGuestMode = () => {
 </script>
 
 <template>
-  <main class="startup-page relative h-[84dvh] w-full flex flex-col bg-white">
+  <main class="startup-page relative h-[84dvh] w-full flex flex-col bg-white overflow-hidden">
     <div class="startup-page__hero relative flex-grow w-full">
       <img 
         src="~/assets/img/start-background.webp"
@@ -36,7 +36,7 @@ const setGuestMode = () => {
       <div class="startup-page__actions flex flex-row w-full justify-between">
         <NuxtLink 
           :to="localePath('login')"
-          class="startup-page__btn startup-page__btn--primary py-2 px-6 rounded-full font-semibold text-lg transition-all bg-primary text-txt-main active:opacity-80"
+          class="startup-page__btn startup-page__btn--primary px-3 py-2 md:px-6 rounded-full font-semibold text-sm md:text-lg transition-all bg-primary text-txt-main active:opacity-80"
         >
           {{ $t('start.btn') }}
       </NuxtLink>
@@ -44,7 +44,7 @@ const setGuestMode = () => {
         <button 
           @click="setGuestMode"
           type="button"
-          class="startup-page__btn startup-page__btn--secondary py-2 px-6 rounded-full text-nowrap font-semibold text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50 cursor-pointer"
+          class="startup-page__btn startup-page__btn--secondary px-3 py-2 md:px-6 rounded-full text-nowrap font-semibold text-sm md:text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50 cursor-pointer"
         >
           {{ $t('start.guestBtn') }}
         </button>
