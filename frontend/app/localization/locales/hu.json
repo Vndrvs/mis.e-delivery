@@ -1,4 +1,10 @@
 {
+  "start": {
+    "title": "Tokyo ízei egy klikk távolságra",
+    "paragraph": "Az artisztikus piaci kézművesség hangulatát visszük el az otthonodba. Prémium gasztronómiai élmények, frissen szállítva.",
+    "btn": "Bejelentkezés",
+    "guestBtn": "Folytatás vendégként"
+  },
   "nav": {
     "home": "Kezdőlap",
     "menu": "Étlap",

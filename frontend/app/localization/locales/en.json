@@ -1,4 +1,10 @@
 {
+  "start": {
+    "title": "The Taste of Tokyo, Just a Tap Away",
+    "paragraph": "Bringing the craft of the artisan stall to your home. Premium dining experiences, delivered fresh.",
+    "btn": "Login",
+    "guestBtn": "Continue as Guest"
+  },
   "nav": {
     "home": "Home",
     "menu": "Menu",

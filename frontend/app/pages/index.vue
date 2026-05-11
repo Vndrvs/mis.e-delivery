@@ -59,7 +59,7 @@ const subscribeToMarketing = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 md:pt-8 pb-24 lg:pb-16">
+  <div class="flex flex-col gap-6 md:pt-8 pb-24 lg:pb-10">
     <div
       v-if="user && firstAddress"
       class="flex flew-row items-center justify-between dark:bg-white rounded-full border border-str-light px-6 py-3"

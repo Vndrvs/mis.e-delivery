@@ -3,8 +3,8 @@ const localePath = useLocalePath();
 
 const setGuestMode = () => {
   const guestMode = useCookie('guest_mode', { maxAge: 60 * 60 * 24 })
-  guestMode.value = 'true' // Set the cookie
-  navigateTo(localePath('index')) // Move to home page
+  guestMode.value = 'true'
+  navigateTo(localePath('index'))
 }
 </script>
 
@@ -24,14 +24,12 @@ const setGuestMode = () => {
 
     <div class="startup-page__content mx-auto relative max-w-lg z-10 px-4 pb-12 pt-4 flex flex-col gap-8 bg-white">
       <header class="startup-page__header">
-        <h1 class="startup-page__title font-sans text-primary text-[32px] font-bold leading-tight mb-3">
-          The Taste of Tokyo, <br />
-          Just a Tap Away
+        <h1 class="max-w-80 startup-page__title font-sans text-primary text-[32px] font-bold leading-tight mb-3">
+          {{ $t('start.title') }}
         </h1>
         
         <p class="startup-page__subtitle font-sans text-txt-muted text-base leading-relaxed font-medium">
-          Bringing the craft of the artisan stall to your home. 
-          Premium dining experiences, delivered fresh.
+          {{ $t('start.paragraph') }}
         </p>
       </header>
 
@@ -40,15 +38,16 @@ const setGuestMode = () => {
           :to="localePath('login')"
           class="startup-page__btn startup-page__btn--primary py-2 px-6 rounded-full font-semibold text-lg transition-all bg-primary text-txt-main active:opacity-80"
         >
-          Login
+          {{ $t('start.btn') }}
       </NuxtLink>
         
-        <NuxtLink 
+        <button 
           @click="setGuestMode"
-          class="startup-page__btn startup-page__btn--secondary py-2 px-6 rounded-full text-nowrap font-semibold text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50"
+          type="button"
+          class="startup-page__btn startup-page__btn--secondary py-2 px-6 rounded-full text-nowrap font-semibold text-lg transition-all bg-white border border-txt-muted text-txt-muted active:bg-gray-50 cursor-pointer"
         >
-          Continue as Guest
-        </NuxtLink>
+          {{ $t('start.guestBtn') }}
+        </button>
       </div>
     </div>
     

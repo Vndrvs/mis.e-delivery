@@ -34,7 +34,7 @@ const isCartPage = computed(() => {
 
 <template>
   <div class="layout-default" :class="{ 'allow-scroll': isStartupPage }">
-    <TheNavbar v-if="!isStartupPage" />
+    <TheNavbar />
 
     <main 
       class="layout-default__main bg-page" 
