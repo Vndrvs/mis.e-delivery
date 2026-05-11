@@ -95,12 +95,12 @@ onUnmounted(() => {
 				{{ t('cart.back-btn') }}
 			</NuxtLink>
 		</div>
-		<div v-else class="flex flex-col lg:flex-row gap-6 lg:gap-10 min-h-[calc(100dvh-200px)] mb-28 lg:mb-0">
+		<div v-else class="w-full flex flex-col lg:flex-row gap-6 lg:gap-10 min-h-[calc(100dvh-200px)] mb-28 lg:mb-0">
 			<div class="lg:flex-grow flex flex-col gap-4">
 				<div 
 				v-for="item in cartStore.items" 
 				:key="item.id"
-				class="bg-white rounded-3xl p-4 md:p-5 flex items-center gap-4 md:gap-6 shadow-sm relative"
+				class="lg:min-w-[540px] bg-white rounded-3xl p-4 md:p-5 flex items-center gap-4 md:gap-6 shadow-sm relative"
 				>
 					<img 
 						:src="getImageUrl(item.image)"
@@ -138,16 +138,17 @@ onUnmounted(() => {
                                 </button>
                             </div>
                         </div>
-						
+						<div class="flex flex-col items-start">
 							<h3 class="font-bold text-[1.1rem] md:text-xl text-gray-900 leading-tight capitalize">
 								{{ item.name }} <span class="text-primary"> {{ item.name_accent }} </span>
-								<span class="text-primary">{{ getDisplayCategory(item.category) }}</span>
+								<span class="text-primary"> {{ getDisplayCategory(item.category) }} </span>
 							</h3>
 						
 							<p class="text-sm text-gray-600 mt-0.5 font-mono">
 								{{ item.piece_count || 1 }} {{ t('products.count', item.piece_count || 1) }} / {{ t('products.item') }}
 							</p>
 						</div>
+					</div>
 
 						<div class="w-full flex items-end justify-between mt-3">
 							<span class="font-bold text-[1.1rem] md:text-xl text-gray-900">
@@ -178,13 +179,13 @@ onUnmounted(() => {
 				</div>
 			</div>
 			<div class="w-full lg:w-[380px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24 h-fit">
-				<div class="flex gap-3">
+				<div class="flex gap-3 overflow-hidde justify-between">
 					<input 
 						type="text" 
 						:placeholder="t('cart.promotion')"
-						class="flex-grow bg-white rounded-2xl px-5 py-4 text-gray-700 capitalize shadow-sm outline-none focus:ring-2 focus:ring-primary" 
+						class="max-w-[180px] md:max-w-full flex-grow bg-white rounded-2xl px-5 py-3 md:py-4 text-gray-700 capitalize shadow-sm outline-none focus:ring-2 focus:ring-primary" 
 					/>
-					<button class="bg-primary text-white capitalize font-bold rounded-2xl px-8 py-4 shadow-sm hover:bg-pink-500 transition-colors active:scale-95">
+					<button class="bg-primary text-white capitalize font-bold rounded-2xl px-5 md:px-8 py-3 md:py-4 shadow-sm hover:bg-pink-500 transition-colors active:scale-95">
 						{{ t('cart.promo-btn') }}
 					</button>
 				</div>
