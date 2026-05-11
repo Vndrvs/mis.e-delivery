@@ -82,15 +82,21 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<div class="bg-[#EFEFEF] min-h-[calc(100vh-80px)] py-2 px-4 font-sans pb-24 lg:pb-0 lg:pt-10">
-		<div v-if="cartStore.items.length === 0" class="max-w-4xl mx-auto text-center py-20 bg-white rounded-3xl shadow-sm">
-			<p class="text-txt-muted font-medium mb-6"> {{ t('cart.empty') }} </p>
-			<NuxtLink :to="localePath('menu')" class="bg-primary text-white font-bold px-8 py-3 rounded-full hover:bg-pink-500 transition-colors">
+	<div class="flex flex-col items-center justify-center pt-4 lg:py-16 md:py-24 text-center md:px-4">
+		<div v-if="cartStore.items.length === 0" class="flex flex-col items-center max-w-4xl mx-auto text-center py-20 gap-6 rounded-3xl shadow-sm min-h-[calc(100dvh-200px)]">
+			<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-2">
+				<img src="~/assets/img/cart-icon.svg" class="w-10 h-10 opacity-50" alt="Login Required" />
+			</div>
+			<h2 class="text-2xl md:text-3xl font-black text-txt-sec first-letter:capitalize"> {{ t('cart.empty') }} </h2>
+			<p class="text-txt-muted font-medium mb-6 first-letter:capitalize"> {{ t('cart.emptyWarn') }} </p>
+			<NuxtLink 
+				:to="localePath('menu')" 
+				class="bg-txt-sec text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-black transition-all shadow-md active:scale-95">
 				{{ t('cart.back-btn') }}
 			</NuxtLink>
 		</div>
-		<div v-else class="max-w-5xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-10">
-			<div class="w-full lg:flex-grow flex flex-col gap-4">
+		<div v-else class="flex flex-col lg:flex-row gap-6 lg:gap-10 min-h-[calc(100dvh-200px)] mb-28 lg:mb-0">
+			<div class="lg:flex-grow flex flex-col gap-4">
 				<div 
 				v-for="item in cartStore.items" 
 				:key="item.id"
@@ -102,7 +108,7 @@ onUnmounted(() => {
 						:alt="item.name" 
 					/>
 
-					<div class="flex-grow flex flex-col justify-between min-h-[5.5rem]">
+					<div class="flex-grow flex flex-col items-start justify-between min-h-[5.5rem]">
 						<div>
 							<div class="absolute top-2 right-2 md:top-0 md:right-0 dropdown-trigger z-20">
 								<button 
@@ -143,7 +149,7 @@ onUnmounted(() => {
 							</p>
 						</div>
 
-						<div class="flex items-end justify-between mt-3">
+						<div class="w-full flex items-end justify-between mt-3">
 							<span class="font-bold text-[1.1rem] md:text-xl text-gray-900">
 								{{ formatPrice(item.price * item.quantity) }}
 							</span>

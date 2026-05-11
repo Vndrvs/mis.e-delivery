@@ -34,7 +34,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="login-page w-full flex flex-col font-sans isolate pb-16">
+  <div class="login-page w-full flex flex-col font-sans isolate pb-16 min-h-[calc(100dvh-120px)]">
     
     <header class="login-page__header w-full bg-white py-4 flex items-center justify-center shrink-0 z-20"">
       <div class="flex items-center gap-2">

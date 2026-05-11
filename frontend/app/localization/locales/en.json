@@ -43,7 +43,8 @@
   },
   "cart": {
     "empty": "your cart is empty",
-    "back-btn": "back to menu",
+    "emptyWarn": "To fill up your cart and order, add sushis from the menu!",
+    "back-btn": "Back to Menu",
     "subtotal": "subtotal",
     "delivery": "delivery free",
     "total": "total",

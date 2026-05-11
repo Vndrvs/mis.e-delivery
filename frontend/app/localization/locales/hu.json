@@ -43,7 +43,8 @@
   },
   "cart": {
     "empty": "a kosarad jelenleg üres",
-    "back-btn": "vissza a menühöz",
+    "emptyWarn": "A kosár feltöltéséhez és a rendeléshez adj hozzá sushikat az étlapról!",
+    "back-btn": "Vissza az étlaphoz",
     "subtotal": "résszösszeg",
     "delivery": "szállítási díj",
     "total": "összesen",

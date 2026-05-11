@@ -7,6 +7,7 @@ const props = defineProps<{
   name_accent?: string
   description?: string
   price: number
+  on_sale: boolean 
   sale_price?: number | null
   valid_until?: string
   images?: Array<{ url: string }>
@@ -34,16 +35,13 @@ const formatPrice = (value: number | null | undefined) => {
 
 const fullImageUrl = computed(() => {
   const image = props.images?.[0]?.url;
-
   if (!image) return '';
-
   return image.startsWith('/')
     ? `${config.public.strapiUrl}${image}`
     : image;
 });
 
 const emit = defineEmits(['add'])
-
 </script>
 
 <template>
@@ -54,10 +52,11 @@ const emit = defineEmits(['add'])
                     {{ name }}
                     <span class="text-white ml-1"> {{ name_accent }} </span>
                 </h3>
-				<p class="txt-white dark:txt-black">
-					{{ description }}
-				</p>
+                <p class="text-white dark:text-black">
+                    {{ description }}
+                </p>
             </div>
+            
             <div class="w-full flex px-2">
                 <div class="w-full h-[200px] shrink-0 relative px-2">
                     <img
@@ -68,14 +67,25 @@ const emit = defineEmits(['add'])
                     />
                 </div>
             </div>
+
             <div class="px-5 pb-5 flex justify-between items-end">
                 <div class="bg-white dark:bg-black text-page px-4 py-2 rounded-full border border-str-light shadow-sm flex flex-col items-start leading-none">
-                    <span class="text-[10px] text-txt-muted line-through mb-1">
-                    {{ formatPrice(price) }}
-                    </span>
-                    <span class="text-sm font-bold">
-                    {{ formatPrice(sale_price) }}
-                    </span>
+                    
+                    <template v-if="on_sale">
+                        <span class="text-[10px] text-txt-muted line-through mb-1">
+                            {{ formatPrice(price) }}
+                        </span>
+                        <span class="text-sm font-bold text-primary">
+                            {{ formatPrice(sale_price) }}
+                        </span>
+                    </template>
+                    
+                    <template v-else>
+                        <span class="text-sm font-bold">
+                            {{ formatPrice(price) }}
+                        </span>
+                    </template>
+
                 </div>
                 <button 
                     class="bg-primary hover:scale-105 text-white p-3 rounded-full transition-all active:scale-95 shadow-lg shadow-primary/20"

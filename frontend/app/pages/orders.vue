@@ -132,7 +132,7 @@ const copyOrder = async (order: any) => {
 
 <template>
   <div>
-	<div v-if="!user" class="flex flex-col items-center justify-center py-16 md:py-24 text-center gap-6 px-4 min-h-[calc(100dvh-160px)]">
+	  <div v-if="!user" class="flex flex-col items-center justify-center py-16 md:py-24 text-center gap-6 px-4 min-h-[calc(100dvh-160px)]">
       <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-2">
         <img src="~/assets/img/user-icon.svg" class="w-10 h-10 opacity-50" alt="Login Required" />
       </div>

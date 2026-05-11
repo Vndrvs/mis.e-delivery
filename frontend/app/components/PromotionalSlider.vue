@@ -12,6 +12,10 @@ const strapiLocale = computed(() => locale.value === 'hu' ? 'hu-HU' : 'en');
 const cartStore = useCartStore();
 const config = useRuntimeConfig();
 
+const props = defineProps<{
+  filterName: string;
+}>();
+
 interface StrapiProduct {
   id: number;
   name: string;
@@ -30,12 +34,12 @@ interface StrapiProduct {
 }
 
 const { data: products, pending } = await useAsyncData(
-  'promotion-products',
+  `promotion-products-${props.filterName}`,
   () => find('products', {
     populate: '*',
     locale: strapiLocale.value,
     filters: {
-      is_promotion: {
+      [props.filterName]: {
         $eq: true
       }
     } as any
@@ -112,8 +116,8 @@ onUnmounted(() => {
 <template>
     <div class="text-center bg-cover">
         <div class="embla-testimonial-wrapper">
-            <div ref="emblaRef" class="overflow-visible">
-                <div class="flex">  
+            <div ref="emblaRef" class="overflow-hidden -mx-4 md:-mx-8 pl-4">
+                <div class="flex px-4 md:px-8">
                     <div 
                         class="flex-none snap-start mr-[1.2rem] md:mr-[3rem] w-[65%] md:w-[400px]"
                         v-for="product in normalizedProducts"
@@ -125,6 +129,7 @@ onUnmounted(() => {
                             :name_accent="product.name_accent"
                             :description="product.description"
                             :price="product.price"
+                            :on_sale="product.on_sale"
                             :sale_price="product.sale_price"
                             :valid_until="product.valid_until"
                             :images="product.images"
@@ -133,7 +138,7 @@ onUnmounted(() => {
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center mt-8">
+            <div class="flex justify-center items-center mt-4 md:mt-8">
                 <button
                     v-for="(snap, index) in scrollSnaps"
                     :key="index"
