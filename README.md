@@ -9,6 +9,7 @@ Az oldal célja, hogy a felhasználók intuitívan és fennakadások nélkül b�
 - **UI/UX Prototípus (Figma):** [Figma designfájl linke](https://www.figma.com/design/VmZB74MRw283jmyFXRRZN4/mis.e?node-id=351-1119&t=XkaFxOUHrh3DAZKW-1)
 - **Webalkalmazás felülete:** [A Mis.e rendelési portálja](https://mis-e-delivery.onrender.com/)
 - **Backend / Admin Panel (CMS):** [A Strapi admin panelje](https://46-101-159-56.nip.io/admin/auth/login)
+- **Backend Github Repo:** [Github Link](https://github.com/Vndrvs/multisite-cms)
 
 --- 
 ## 2. Felépítés és Stack
