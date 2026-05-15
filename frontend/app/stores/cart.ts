@@ -80,8 +80,6 @@ export const useCartStore = defineStore('cart', () => {
     try {
       const documentIds = items.value.map(item => item.documentId);
       
-      // 1. STRICT STRAPI V5 ARRAY FORMATTING
-      // This forces the URL to look exactly like Strapi wants, guaranteeing a response!
       const queryParams: Record<string, any> = {
         locale: newLocale
       };
@@ -95,9 +93,6 @@ export const useCartStore = defineStore('cart', () => {
 
       if (!response?.data) return;
 
-      // 2. THE NUCLEAR COOKIE OVERWRITE
-      // By using .map and creating brand new { ...objects }, we completely destroy the old 
-      // memory references, which forces Nuxt's useCookie to save the data immediately.
       const freshItems = items.value.map(item => {
         const translatedProduct = response.data.find((p: any) => p.documentId === item.documentId);
         
@@ -107,7 +102,7 @@ export const useCartStore = defineStore('cart', () => {
             : translatedProduct.price;
             
           return {
-            ...item, // Keeps quantity, image, and documentId untouched
+            ...item,
             id: translatedProduct.id,
             name: translatedProduct.name,
             name_accent: translatedProduct.name_accent,
@@ -118,11 +113,9 @@ export const useCartStore = defineStore('cart', () => {
           };
         }
         
-        // If somehow not found, return a strict clone to keep reactivity safe
         return { ...item };
       });
 
-      // 3. Write the brand new array to the state
       items.value = freshItems;
 
     } catch (error) {
